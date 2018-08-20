@@ -19,12 +19,7 @@ namespace SearchSystems.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Index(string search, string previousSortOrder, string previousSortTerm, string CurrentSortTerm, int? page)
         {
-            //var employees = db.Employees.Include(e => e.Department);
-            int pageSize = 4;
-            int pageIndex = 1;
-            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
            
-            ViewBag.Page = page;
             ViewBag.Search = search;
             previousSortTerm = String.IsNullOrEmpty(previousSortTerm) ? "Name" : previousSortTerm;
             IQueryable<Employee> searchedEmployees = db.Employees;
@@ -33,7 +28,7 @@ namespace SearchSystems.Controllers
             {
                 searchedEmployees = searchedEmployees.Where(e => e.FirstName.StartsWith(search) || e.LastName.StartsWith(search));
             }
-            IPagedList<Employee> pagedEmployees = null;
+            IEnumerable<Employee> sortedmployees = null;
             string currentSortOrder = string.Empty;
 
             
@@ -45,56 +40,56 @@ namespace SearchSystems.Controllers
                     {
                         if (previousSortOrder == "ascending")
                         {
-                            pagedEmployees = searchedEmployees.OrderByDescending
-                                 (m => m.FirstName).ToPagedList(pageIndex, pageSize);
+                            sortedmployees = searchedEmployees.OrderByDescending
+                                 (m => m.FirstName);
                             currentSortOrder = "descending";
                         }
                         else
                         {
-                            pagedEmployees = searchedEmployees.OrderBy
-                                     (m => m.FirstName).ToPagedList(pageIndex, pageSize);
+                            sortedmployees = searchedEmployees.OrderBy
+                                     (m => m.FirstName);
                         }
                     }
                     else
-                        pagedEmployees = searchedEmployees.OrderBy
-                                (m => m.FirstName).ToPagedList(pageIndex, pageSize);
+                        sortedmployees = searchedEmployees.OrderBy
+                                (m => m.FirstName);
                     break;
                 case "LastName":
                     if (previousSortTerm.Equals(CurrentSortTerm))
-                        pagedEmployees = searchedEmployees.OrderByDescending
-                                (m => m.LastName).ToPagedList(pageIndex, pageSize);
+                        sortedmployees = searchedEmployees.OrderByDescending
+                                (m => m.LastName);
                     else
-                        pagedEmployees = searchedEmployees.OrderBy
-                                (m => m.LastName).ToPagedList(pageIndex, pageSize);
+                        sortedmployees = searchedEmployees.OrderBy
+                                (m => m.LastName);
                     break;
                 case "MobileNumber":
                     if (previousSortTerm.Equals(CurrentSortTerm))
-                        pagedEmployees = searchedEmployees.OrderByDescending
-                                (m => m.MobileNumber).ToPagedList(pageIndex, pageSize);
+                        sortedmployees = searchedEmployees.OrderByDescending
+                                (m => m.MobileNumber);
                     else
-                        pagedEmployees = searchedEmployees.OrderBy
-                                (m => m.MobileNumber).ToPagedList(pageIndex, pageSize);
+                        sortedmployees = searchedEmployees.OrderBy
+                                (m => m.MobileNumber);
                     break;
                 case "Salary":
                     if (previousSortTerm.Equals(CurrentSortTerm))
-                        pagedEmployees = searchedEmployees.OrderByDescending
-                                (m => m.Salary).ToPagedList(pageIndex, pageSize);
+                        sortedmployees = searchedEmployees.OrderByDescending
+                                (m => m.Salary);
                     else
-                        pagedEmployees = searchedEmployees.OrderBy
-                                (m => m.Salary).ToPagedList(pageIndex, pageSize);
+                        sortedmployees = searchedEmployees.OrderBy
+                                (m => m.Salary);
                     break;
                 default:
                     // pagedEmployees = new PagedList<Employee>(new List<Employee>(), 1, 1);
                     currentSortOrder = "ascending";
-                    pagedEmployees = searchedEmployees.OrderBy
-                        (m => m.FirstName).ToPagedList(pageIndex, pageSize);
+                    sortedmployees = searchedEmployees.OrderBy
+                        (m => m.FirstName);
                     CurrentSortTerm = "FirstName";
                     break;
             }
             ViewBag.PreviousSortOrder = currentSortOrder;
             ViewBag.PreviousSortTerm = CurrentSortTerm;
            
-            return View(pagedEmployees);
+            return View(sortedmployees);
         }
         // GET: Employees
         //public ActionResult Index()
