@@ -1,0 +1,98 @@
+﻿@model PagedList.IPagedList<SearchSystems.Models.Employee>
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Employee List";
+    string currentSearch = ViewBag.Search;
+    string currentSortTerm = ViewBag.PreviousSortTerm;
+}
+
+<h2>Employee List</h2>
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <b>Search Option</b>
+    @Html.RadioButton("option", "Name") <text>Name</text>
+    @Html.TextBox("Search")
+    <input type = "submit" name = "submit" value = "Search" />
+
+    <p></p>
+
+    <table class="table">
+        <tr>
+            @*@{Html.RenderPartial("_EmployeeReportHeader");}*@
+            <th>
+                @Html.ActionLink("Employee Id", "Index",
+                            new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
+            </th>
+            <th>
+                @Html.ActionLink("First Name", "Index",
+                            new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
+            </th>
+            <th>
+                @Html.ActionLink("Last Name", "Index",
+                                       new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                @Html.ActionLink("Mobile Number", "Index",
+                                    new { CurrentSortTerm = "MobileNumber", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
+            </th>
+            <th>
+                Email Address
+            </th>
+
+            <th>
+                Department
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+        }
+
+    </table>
+    <br />
+    @*<div id='Paging' style="text-align:center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = currentSearch, CurrentSortTerm = currentSortTerm, previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm }))
+    </div>*@
+    }
