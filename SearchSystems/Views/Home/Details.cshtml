@@ -11,45 +11,41 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayName("Employee ID")
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayName("First Name")
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayName("Last Name")
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.LastName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayName("Department Name")
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Address)
+            @Html.DisplayFor(model => model.Department.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Gender)
+            @Html.DisplayName("Gender")
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Gender)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DOB)
+            @Html.DisplayName("Date Of Birth")
         </dt>
 
         <dd>
@@ -57,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BloodGroup)
+            @Html.DisplayName("Blood Group")
         </dt>
 
         <dd>
@@ -65,7 +61,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MobileNumber)
+            @Html.DisplayName("Mobile Number")
         </dt>
 
         <dd>
@@ -73,15 +69,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LandlineNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LandlineNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WhatsAppNumber)
+            @Html.DisplayName("WhatsApp Number")
         </dt>
 
         <dd>
@@ -89,7 +77,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
+            @Html.DisplayName("Landline Number")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LandlineNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Email ID")
         </dt>
 
         <dd>
@@ -97,7 +93,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.OfficeEmailAddress)
+            @Html.DisplayName("Office Mail ID")
         </dt>
 
         <dd>
@@ -105,7 +101,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayName("Current Address")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("City")
         </dt>
 
         <dd>
@@ -113,7 +117,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.District)
+            @Html.DisplayName("District")
         </dt>
 
         <dd>
@@ -121,7 +125,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.DisplayName("State")
         </dt>
 
         <dd>
@@ -129,7 +133,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Country)
+            @Html.DisplayName("Country")
         </dt>
 
         <dd>
@@ -137,7 +141,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PinCode)
+            @Html.DisplayName("Pin Code")
         </dt>
 
         <dd>
@@ -145,15 +149,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Salary)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Designation)
+            @Html.DisplayName("Designation")
         </dt>
 
         <dd>
@@ -161,7 +157,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateOfJoining)
+            @Html.DisplayName("Current Salary")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Date of Joining")
         </dt>
 
         <dd>
@@ -169,15 +173,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ProbationPeriod)
+            @Html.DisplayName("Probation Period")
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ProbationPeriod)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PFAccountNumber)
+            @Html.DisplayName("PF Start Date")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PFStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("PF Account Number")
         </dt>
 
         <dd>
@@ -185,7 +195,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PFUANNumber)
+            @Html.DisplayName("PF UAN Number")
         </dt>
 
         <dd>
@@ -193,15 +203,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GratuityNumber)
+            @Html.DisplayName("Gratuity Number")
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.GratuityNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MedicalInsuranceNumber)
+            @Html.DisplayName("Gratuity Start Date")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GratuityStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Medical Insurance Number")
         </dt>
 
         <dd>
@@ -209,23 +225,36 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InsuranceStartDate)
+            @Html.DisplayName("Medical Insurance Start Date")
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.InsuranceStartDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BankAccountNumber)
-        </dt>
 
+        <dt>
+            @Html.DisplayName("Insurance Expiry Date")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InsuranceExpiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Bank Account Number")
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.BankAccountNumber)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BankBranchName)
+            @Html.DisplayName("Bank Name")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BankName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Branch Name")
         </dt>
 
         <dd>
@@ -233,7 +262,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BankIFSCCode)
+            @Html.DisplayName("Bank IFSC Code")
         </dt>
 
         <dd>
@@ -241,7 +270,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AadharNumber)
+            @Html.DisplayName("AADHAR Number")
         </dt>
 
         <dd>
@@ -249,7 +278,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PANNumber)
+            @Html.DisplayName("PAN Number")
         </dt>
 
         <dd>
@@ -257,7 +286,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DrivingLicenseNumber)
+            @Html.DisplayName("Driving Licence Number")
         </dt>
 
         <dd>
@@ -265,20 +294,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.VehicleNumber)
+            @Html.DisplayName("Vehicle Number")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.VehicleNumber)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Department.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Department.Name)
-        </dd>
 
     </dl>
 </div>

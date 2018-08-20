@@ -19,7 +19,6 @@ namespace SearchSystems.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Index(string search, string previousSortOrder, string previousSortTerm, string CurrentSortTerm, int? page)
         {
-           
             ViewBag.Search = search;
             previousSortTerm = String.IsNullOrEmpty(previousSortTerm) ? "Name" : previousSortTerm;
             IQueryable<Employee> searchedEmployees = db.Employees;
@@ -48,11 +47,35 @@ namespace SearchSystems.Controllers
                         {
                             sortedmployees = searchedEmployees.OrderBy
                                      (m => m.FirstName);
+                            currentSortOrder = "ascending";
                         }
                     }
                     else
                         sortedmployees = searchedEmployees.OrderBy
                                 (m => m.FirstName);
+                    currentSortOrder = "ascending";
+                    break;
+                case "Id":
+                    CurrentSortTerm = "Id";
+                    if (previousSortTerm.Equals(CurrentSortTerm))
+                    {
+                        if (previousSortOrder == "ascending")
+                        {
+                            sortedmployees = searchedEmployees.OrderByDescending
+                                 (m => m.Id);
+                            currentSortOrder = "descending";
+                        }
+                        else
+                        {
+                            sortedmployees = searchedEmployees.OrderBy
+                                     (m => m.Id);
+                            currentSortOrder = "ascending";
+                        }
+                    }
+                    else
+                        sortedmployees = searchedEmployees.OrderBy
+                                (m => m.Id);
+                    currentSortOrder = "ascending";
                     break;
                 case "LastName":
                     if (previousSortTerm.Equals(CurrentSortTerm))
