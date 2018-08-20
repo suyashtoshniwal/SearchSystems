@@ -20,7 +20,7 @@ namespace SearchSystems.Controllers
         public ActionResult Index(string search, string previousSortOrder, string previousSortTerm, string CurrentSortTerm, int? page)
         {
             //var employees = db.Employees.Include(e => e.Department);
-            int pageSize = 2;
+            int pageSize = 4;
             int pageIndex = 1;
             pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
            
