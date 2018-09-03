@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using PagedList;
-using SearchSystems.Models;
 
+using SearchSystems.Models;
 
 namespace SearchSystems.Controllers
 {
@@ -17,12 +16,34 @@ namespace SearchSystems.Controllers
         private SEARCHSYSTEMSEntities4 db = new SEARCHSYSTEMSEntities4();
 
         [Authorize(Roles = "admin")]
-        public ActionResult Index(string search, string previousSortOrder, string previousSortTerm, string CurrentSortTerm, int? page)
+        public ActionResult Index(string search, string previousSortOrder,
+                                  string previousSortTerm, string CurrentSortTerm,
+                                  int? page, bool PFView = false, bool gratuityView = false,
+                                  bool insuranceView = false)
         {
             ViewBag.Search = search;
+            ViewBag.PFView = PFView;
             previousSortTerm = String.IsNullOrEmpty(previousSortTerm) ? "Name" : previousSortTerm;
             IQueryable<Employee> searchedEmployees = db.Employees;
 
+            if(PFView)
+            {
+                DateTime testGreaterThanDate = DateTime.Now.Subtract(new TimeSpan(30, 0, 0, 0));
+
+                searchedEmployees = searchedEmployees.Where(e=> e.PFStartDate >= testGreaterThanDate && e.PFStatus == false);
+            }
+            if (gratuityView)
+            {
+                DateTime testGreaterThanDate = DateTime.Now.Subtract(new TimeSpan(120, 0, 0, 0));
+
+                searchedEmployees = searchedEmployees.Where(e => e.GratuityStartDate >= testGreaterThanDate && e.GratuityStatus == false);
+            }
+            if (insuranceView)
+            {
+                DateTime testGreaterThanDate = DateTime.Now.Subtract(new TimeSpan(30, 0, 0, 0));
+
+                searchedEmployees = searchedEmployees.Where(e => e.InsuranceRenewalDate == null || e.InsuranceExpiryDate >= testGreaterThanDate);
+            }
             if (!String.IsNullOrEmpty(search))
             {
                 searchedEmployees = searchedEmployees.Where(e => e.FirstName.StartsWith(search) || e.LastName.StartsWith(search));
@@ -30,7 +51,6 @@ namespace SearchSystems.Controllers
             IEnumerable<Employee> sortedmployees = null;
             string currentSortOrder = string.Empty;
 
-            
             switch (CurrentSortTerm)
             {
                 case "FirstName":
@@ -51,9 +71,12 @@ namespace SearchSystems.Controllers
                         }
                     }
                     else
+                    {
                         sortedmployees = searchedEmployees.OrderBy
                                 (m => m.FirstName);
-                    currentSortOrder = "ascending";
+                        currentSortOrder = "ascending";
+                    }
+
                     break;
                 case "Id":
                     CurrentSortTerm = "Id";
@@ -73,36 +96,40 @@ namespace SearchSystems.Controllers
                         }
                     }
                     else
+
+                    {
                         sortedmployees = searchedEmployees.OrderBy
-                                (m => m.Id);
-                    currentSortOrder = "ascending";
+                                  (m => m.Id);
+                        currentSortOrder = "ascending";
+                    }
+
                     break;
                 case "LastName":
+                    CurrentSortTerm = "LastName";
                     if (previousSortTerm.Equals(CurrentSortTerm))
-                        sortedmployees = searchedEmployees.OrderByDescending
-                                (m => m.LastName);
+                    {
+                        if (previousSortOrder == "ascending")
+                        {
+                            sortedmployees = searchedEmployees.OrderByDescending
+                                 (m => m.LastName);
+                            currentSortOrder = "descending";
+                        }
+                        else
+                        {
+                            sortedmployees = searchedEmployees.OrderBy
+                                     (m => m.LastName);
+                            currentSortOrder = "ascending";
+                        }
+                    }
                     else
+                    {
                         sortedmployees = searchedEmployees.OrderBy
-                                (m => m.LastName);
-                    break;
-                case "MobileNumber":
-                    if (previousSortTerm.Equals(CurrentSortTerm))
-                        sortedmployees = searchedEmployees.OrderByDescending
-                                (m => m.MobileNumber);
-                    else
-                        sortedmployees = searchedEmployees.OrderBy
-                                (m => m.MobileNumber);
-                    break;
-                case "Salary":
-                    if (previousSortTerm.Equals(CurrentSortTerm))
-                        sortedmployees = searchedEmployees.OrderByDescending
-                                (m => m.Salary);
-                    else
-                        sortedmployees = searchedEmployees.OrderBy
-                                (m => m.Salary);
+                                  (m => m.LastName);
+                        currentSortOrder = "ascending";
+                    }
+
                     break;
                 default:
-                    // pagedEmployees = new PagedList<Employee>(new List<Employee>(), 1, 1);
                     currentSortOrder = "ascending";
                     sortedmployees = searchedEmployees.OrderBy
                         (m => m.FirstName);
@@ -112,6 +139,14 @@ namespace SearchSystems.Controllers
             ViewBag.PreviousSortOrder = currentSortOrder;
             ViewBag.PreviousSortTerm = CurrentSortTerm;
            
+            if(PFView)
+            {
+                return View("PFView", sortedmployees.ToList());
+            }
+            if (gratuityView)
+            {
+                return View("GratuityView", sortedmployees.ToList());
+            }
             return View(sortedmployees);
         }
         // GET: Employees
@@ -157,9 +192,21 @@ namespace SearchSystems.Controllers
                 {
                     db.SaveChanges();
                 }
-                catch (Exception e)
+                catch (DbEntityValidationException e)
                 {
-
+                    foreach (var eve in e.EntityValidationErrors)
+                    {
+                        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Console.WriteLine("- Property: \"{0}\", Value: \"{1}\", Error: \"{2}\"",
+                                ve.PropertyName,
+                                eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName),
+                                ve.ErrorMessage);
+                        }
+                    }
+                    throw;
                 }
                 return RedirectToAction("Index");
             }
@@ -201,6 +248,62 @@ namespace SearchSystems.Controllers
             return View(employee);
         }
 
+        [HttpPost]
+        public ActionResult EnablePF([Bind(Include = "Id,PFStatus")] IList<Employee> employeeList)
+        {
+            var updatedEmployeeList = new List<Employee>();
+
+            foreach (Employee e in employeeList)
+            {
+                Employee existedEmployee = db.Employees.Find(e.Id);
+
+                existedEmployee.PFStatus = e.PFStatus;
+
+                updatedEmployeeList.Add(e);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { pfview = true });
+
+        }
+
+        [HttpPost]
+        public ActionResult EnableGratuity([Bind(Include = "Id,GratuityStatus")] IList<Employee> employeeList)
+        {
+            var updatedEmployeeList = new List<Employee>();
+
+            foreach (Employee e in employeeList)
+            {
+                Employee existedEmployee = db.Employees.Find(e.Id);
+
+                existedEmployee.GratuityStatus = e.GratuityStatus;
+
+                updatedEmployeeList.Add(e);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { gratuityview = true });
+
+        }
+
+        [HttpPost]
+        public ActionResult RenewInsurance([Bind(Include = "Id,InsuranceRenewalDate")] IList<Employee> employeeList)
+        {
+            var updatedEmployeeList = new List<Employee>();
+
+            foreach (Employee e in employeeList)
+            {
+                Employee existedEmployee = db.Employees.Find(e.Id);
+
+                existedEmployee.InsuranceRenewalDate = e.InsuranceRenewalDate;
+
+                updatedEmployeeList.Add(e);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { insuranceview = true });
+
+        }
         // GET: Employees/Delete/5
         public ActionResult Delete(decimal id)
         {

@@ -44,7 +44,7 @@ namespace SearchSystems.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Dashboard");
                         }
                     }
                     else

@@ -21,8 +21,8 @@ namespace SearchSystems.Models
         public string Gender { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string BloodGroup { get; set; }
-        public Nullable<decimal> MobileNumber { get; set; }
-        public Nullable<decimal> WhatsAppNumber { get; set; }
+        public string MobileNumber { get; set; }
+        public string WhatsAppNumber { get; set; }
         public string LandlineNumber { get; set; }
         public string EmailAddress { get; set; }
         public string OfficeEmailAddress { get; set; }
@@ -35,7 +35,7 @@ namespace SearchSystems.Models
         public string Designation { get; set; }
         public Nullable<decimal> Salary { get; set; }
         public Nullable<System.DateTime> DateOfJoining { get; set; }
-        public Nullable<decimal> ProbationPeriod { get; set; }
+        public Nullable<int> ProbationPeriod { get; set; }
         public Nullable<System.DateTime> PFStartDate { get; set; }
         public string PFAccountNumber { get; set; }
         public string PFUANNumber { get; set; }
@@ -52,6 +52,9 @@ namespace SearchSystems.Models
         public string PANNumber { get; set; }
         public string DrivingLicenseNumber { get; set; }
         public string VehicleNumber { get; set; }
+        public Nullable<bool> PFStatus { get; set; }
+        public Nullable<bool> GratuityStatus { get; set; }
+        public Nullable<System.DateTime> InsuranceRenewalDate { get; set; }
     
         public virtual Department Department { get; set; }
     }

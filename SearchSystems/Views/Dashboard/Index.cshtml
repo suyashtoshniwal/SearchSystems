@@ -1,0 +1,96 @@
+﻿@model SearchSystems.ViewModels.EmployeeDashboardVM
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dashboard</h2>
+@using (Html.BeginForm())
+{
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+   
+
+    <script>
+        $(document).ready(function () {
+            //Load Data Here
+            var chartData = null;
+            $.ajax({
+                url: '/Dashboard/GetEmployeeJoiningData',
+                type: 'GET',
+                dataType: 'json',
+                data: '',
+                success: function (d) {
+                    chartData = d;
+                },
+                error: function () {
+                    alert('Error!');
+                }
+            }).done(function () {
+                drawColumnChart(chartData);
+            });
+        });
+        function drawColumnChart(d) {
+            var chartData = d;
+            var data = null;
+            data = google.visualization.arrayToDataTable(chartData);
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, {
+                type: 'number',
+                label: data.getColumnLabel(0),
+                calc: function () { return 0; }
+            }
+            ]);
+            var chart = new google.visualization.ColumnChart($('#employeeColumnChart')[0]); //returns a HTML DOM Object
+            var options = {
+                title: 'Employee Joining Report',
+                legend: 'none',
+                colors: ['blue', '#009900'],
+
+                hAxis: {
+                    title: 'Year',
+                    format: '#',
+                    viewWindow: {
+                        min: 1980,
+                        max: 2500
+                    }
+                },
+                vAxis: {
+                    minValue: 0,
+                    maxValue: 100,
+                    title: 'EmployeesJoined'
+                },
+                chartArea: {
+                    left: 100, top: 50, width: '70%', height: '50%'
+                },
+                animation: {
+                    duration: 1000
+                },
+            };
+            var runFirstTime = google.visualization.events.addListener(chart, 'ready', function () {
+                google.visualization.events.removeListener(runFirstTime);
+                chart.draw(data, options);
+            });
+            chart.draw(data, options);
+        }
+        google.load('visualization', '1', { packages: ['corechart'] });
+    </script>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink(Model.TotalEmployeesNumber.ToString(), "Index", "home")
+
+            </th>
+        </tr>
+        <tr>
+            @Html.ActionLink("Employees to Start PF For", "Index", "home", new { pfview = true }, null)
+        </tr>
+        <tr>
+            @Html.ActionLink("Employees to Start Gratuity For", "Index", "home", new { gratuityview = true }, null)
+        </tr>
+    </table>
+    <div id="employeeColumnChart"></div>
+}
+

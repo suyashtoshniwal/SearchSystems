@@ -199,6 +199,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EmployeesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -252,6 +253,8 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ViewModels\EmployeeDashboardVM.cs" />
+    <Compile Include="ViewModels\SalesCategoryModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -259,6 +262,7 @@
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Print.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -329,6 +333,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Employee.edmx</DependentUpon>
       <LastGenOutput>Employee.Context.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Models\Employee.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -450,6 +455,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_EmployeeReportHeader.cshtml" />
     <Content Include="Views\Shared\EmployeePFReport.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Home\PFView.cshtml" />
+    <Content Include="Views\Shared\Editor Templates\DateTime.cshtml" />
+    <Content Include="Views\Home\GratuityView.cshtml" />
+    <Content Include="Views\Home\InsuranceView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -498,7 +508,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52670</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52672/</IISUrl>
+          <IISUrl>http://localhost:52673/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

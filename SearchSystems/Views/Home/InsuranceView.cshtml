@@ -1,0 +1,86 @@
+﻿@model IList<SearchSystems.Models.Employee>
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Employee List";
+    string currentSearch = ViewBag.Search;
+    string currentSortTerm = ViewBag.PreviousSortTerm;
+
+}
+
+<h2>Employee List</h2>
+
+@using (Html.BeginForm("RenewInsurance", "Home", FormMethod.Post))
+{
+    @Html.TextBox("Search")
+
+    <input type="submit" name="submit" value="Search" formaction="Index" />
+
+    <input type="hidden" name="insuranceview" value="true" />
+
+    <p></p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Employee Id", "Index",
+                                         new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+            </th>
+            <th>
+                @Html.ActionLink("First Name", "Index",
+                                         new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+            </th>
+            <th>
+                @Html.ActionLink("Last Name", "Index",
+                                                    new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                DateOfJoining
+            </th>
+            <th>
+                InsuranceRenewalDate
+            </th>
+            <th></th>
+        </tr>
+
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.TextBoxFor(modelItem => Model[i].Id, new { @style = "border: 0px" })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model[i].FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model[i].LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model[i].Department.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model[i].DateOfJoining)
+                </td>
+                <td>
+                    @Html.TextBoxFor(modelItem => Model[i].InsuranceRenewalDate)
+                </td>
+                @*<td>
+                    @Html.CheckBoxFor(modelItem => Model[i].GratuityStatus, new { @class = "" })
+                </td>*@
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>*@
+            </tr>
+        }
+            <tr>
+                <td colspan="5">
+                    <input type="submit" value="Submit" style="float:right ; class:noprint" />
+                </td>
+            </tr>
+    </table>
+}

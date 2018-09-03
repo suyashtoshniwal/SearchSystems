@@ -31,13 +31,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Department Name")
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Department.Name)
-        </dd>
-
-        <dt>
             @Html.DisplayName("Gender")
         </dt>
         <dd>
@@ -148,6 +141,12 @@
             @Html.DisplayFor(model => model.PinCode)
         </dd>
 
+        <dt>
+            @Html.DisplayName("Department Name")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
         <dt>
             @Html.DisplayName("Designation")
         </dt>
@@ -270,14 +269,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("AADHAR Number")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AadharNumber)
-        </dd>
-
-        <dt>
             @Html.DisplayName("PAN Number")
         </dt>
 
@@ -286,22 +277,21 @@
         </dd>
 
         <dt>
+            @Html.DisplayName("AADHAR Number")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AadharNumber)
+        </dd>
+
+
+        <dt>
             @Html.DisplayName("Driving Licence Number")
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DrivingLicenseNumber)
         </dd>
-
-        <dt>
-            @Html.DisplayName("Vehicle Number")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VehicleNumber)
-        </dd>
-
-
 
     </dl>
 </div>
