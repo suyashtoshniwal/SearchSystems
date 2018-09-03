@@ -147,6 +147,10 @@ namespace SearchSystems.Controllers
             {
                 return View("GratuityView", sortedmployees.ToList());
             }
+            if (insuranceView)
+            {
+                return View("InsuranceView", sortedmployees.ToList());
+            }
             return View(sortedmployees);
         }
         // GET: Employees

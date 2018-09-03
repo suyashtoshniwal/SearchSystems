@@ -71,7 +71,7 @@
                     @Html.DisplayFor(modelItem => Model[i].GratuityStartDate)
                 </td>
                 <td>
-                    @Html.CheckBoxFor(modelItem => Model[i].GratuityStatus, new { @class = "" })
+                    @Html.CheckBoxFor(modelItem => Model[i].GratuityStatus.Value, new { @class = "" })
                 </td>
                 @*<td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
