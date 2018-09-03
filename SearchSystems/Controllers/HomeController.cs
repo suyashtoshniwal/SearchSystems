@@ -28,9 +28,9 @@ namespace SearchSystems.Controllers
 
             if(PFView)
             {
-                DateTime testGreaterThanDate = DateTime.Now.Subtract(new TimeSpan(30, 0, 0, 0));
+                DateTime testGreaterThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
 
-                searchedEmployees = searchedEmployees.Where(e=> e.PFStartDate >= testGreaterThanDate && e.PFStatus == false);
+                searchedEmployees = searchedEmployees.Where(e=> e.PFStartDate >= DateTime.Today && e.PFStartDate <= testGreaterThanDate && e.PFStatus == false);
             }
             if (gratuityView)
             {
