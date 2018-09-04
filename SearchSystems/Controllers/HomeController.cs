@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using SearchSystems.Models;
 
 namespace SearchSystems.Controllers
@@ -271,6 +273,28 @@ namespace SearchSystems.Controllers
 
             return RedirectToAction("Index", new { pfview = true });
 
+        }
+
+        [HttpPost]
+        public ActionResult ExportToExcel()
+        {
+            var allEmployees = db.Employees.ToList();
+
+            var gv = new GridView();
+            gv.DataSource = allEmployees;
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=DemoExcel.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            StringWriter objStringWriter = new StringWriter();
+            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            gv.RenderControl(objHtmlTextWriter);
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+            return View("Index");
         }
 
         [HttpPost]
