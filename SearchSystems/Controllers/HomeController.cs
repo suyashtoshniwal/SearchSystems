@@ -133,6 +133,56 @@ namespace SearchSystems.Controllers
                     }
 
                     break;
+                case "Gender":
+                    CurrentSortTerm = "Gender";
+                    if (previousSortTerm.Equals(CurrentSortTerm))
+                    {
+                        if (previousSortOrder == "ascending")
+                        {
+                            sortedmployees = searchedEmployees.OrderByDescending
+                                 (m => m.Gender);
+                            currentSortOrder = "descending";
+                        }
+                        else
+                        {
+                            sortedmployees = searchedEmployees.OrderBy
+                                     (m => m.Gender);
+                            currentSortOrder = "ascending";
+                        }
+                    }
+                    else
+                    {
+                        sortedmployees = searchedEmployees.OrderBy
+                                  (m => m.DepartmentId);
+                        currentSortOrder = "ascending";
+                    }
+
+                    break;
+                case "DepartmentId":
+                    CurrentSortTerm = "DepartmentId";
+                    if (previousSortTerm.Equals(CurrentSortTerm))
+                    {
+                        if (previousSortOrder == "ascending")
+                        {
+                            sortedmployees = searchedEmployees.OrderByDescending
+                                 (m => m.DepartmentId);
+                            currentSortOrder = "descending";
+                        }
+                        else
+                        {
+                            sortedmployees = searchedEmployees.OrderBy
+                                     (m => m.DepartmentId);
+                            currentSortOrder = "ascending";
+                        }
+                    }
+                    else
+                    {
+                        sortedmployees = searchedEmployees.OrderBy
+                                  (m => m.DepartmentId);
+                        currentSortOrder = "ascending";
+                    }
+
+                    break;
                 default:
                     currentSortOrder = "ascending";
                     sortedmployees = searchedEmployees.OrderBy

@@ -22,18 +22,19 @@
         <tr>
             <th>
                 @Html.ActionLink("Employee Id", "Index",
-                                        new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
+                                     new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
             </th>
             <th>
                 @Html.ActionLink("First Name", "Index",
-                                        new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
+                                     new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
             </th>
             <th>
                 @Html.ActionLink("Last Name", "Index",
-                                                   new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
+                                                new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
             </th>
             <th>
-                Gender
+                @Html.ActionLink("Gender", "Index",
+                                                    new { CurrentSortTerm = "Gender", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
             </th>
             <th>
                 Mobile Number
@@ -41,9 +42,9 @@
             <th>
                 Email Address
             </th>
-
             <th>
-                Department
+            @Html.ActionLink("Department", "Index",
+                                               new { CurrentSortTerm = "DepartmentId", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
             </th>
             <th></th>
         </tr>
