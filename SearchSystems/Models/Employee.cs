@@ -66,11 +66,11 @@ namespace SearchSystems.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> InsuranceStartDate { get; set; }
+        public Nullable<System.DateTime> InsuranceExpiryDate { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> InsuranceExpiryDate { get; set; }
+        public Nullable<System.DateTime> c { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
         public string BankBranchName { get; set; }
