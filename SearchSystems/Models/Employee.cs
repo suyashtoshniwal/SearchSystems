@@ -12,7 +12,6 @@ namespace SearchSystems.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Employee
     {
@@ -59,9 +58,6 @@ namespace SearchSystems.Models
         public string PFAccountNumber { get; set; }
         public string PFUANNumber { get; set; }
         public string GratuityNumber { get; set; }
-
-        [NotMapped]
-        public TimeSpan YearsOfExperience { get { return DateTime.Today.Subtract(this.DateOfJoining.Value); } }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

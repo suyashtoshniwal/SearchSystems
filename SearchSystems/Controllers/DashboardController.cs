@@ -2,7 +2,6 @@
 using SearchSystems.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -46,11 +45,8 @@ namespace SearchSystems.Controllers
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));
 
-            var empList = db.Employees.ToList();
-            var e1 = db.Employees.ToList()[0];
-            var exp = System.DateTime.Today - e1.DateOfJoining.Value;
             var result = from e in db.Employees
-                         group e.Id by new { experience = DbFunctions.DiffYears(e.DateOfJoining.Value, System.DateTime.Today) }
+                         group e.Id by new { experience = System.DateTime.Today - e.DateOfJoining.Value }
 into g
                          select new { g.Key.experience, CountOf = g.Count() };
 
