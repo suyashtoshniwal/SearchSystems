@@ -23,6 +23,7 @@ namespace SearchSystems.Controllers
                                   int? page, bool PFView = false, bool gratuityView = false,
                                   bool insuranceView = false)
         {
+
             ViewBag.Search = search;
             ViewBag.PFView = PFView;
             previousSortTerm = String.IsNullOrEmpty(previousSortTerm) ? "Name" : previousSortTerm;

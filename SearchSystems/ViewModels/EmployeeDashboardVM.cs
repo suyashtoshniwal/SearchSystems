@@ -11,6 +11,8 @@ namespace SearchSystems.ViewModels
 
         public int TotalEmpNumberPFTostartFor { get; set; }
 
+        public int EmpServiceCount { get; set; }
+
         public List<object> ChartData = new List<object>();
    
     }
