@@ -11,7 +11,8 @@ namespace SearchSystems.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Employee
     {
         public int Id { get; set; }
@@ -35,6 +36,10 @@ namespace SearchSystems.Models
         public string Designation { get; set; }
         public string Salary { get; set; }
         public Nullable<System.DateTime> DateOfJoining { get; set; }
+
+        [NotMapped]
+        public TimeSpan YearsOfExperience { get { return DateTime.Today.Subtract(this.DateOfJoining.Value); } }
+
         public Nullable<int> ProbationPeriod { get; set; }
         public Nullable<System.DateTime> PFStartDate { get; set; }
         public string PFAccountNumber { get; set; }
