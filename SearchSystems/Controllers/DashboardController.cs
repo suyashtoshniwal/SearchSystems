@@ -45,7 +45,15 @@ namespace SearchSystems.Controllers
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));
 
-            
+            var result = from e in db.Employees
+                         group e.Id by new { experience = System.DateTime.Today - e.DateOfJoining.Value }
+into g
+                         select new { g.Key.experience, CountOf = g.Count() };
+
+            var resultList = result.ToList();
+
+            employeeDashboardViewModel.EmpServiceCount = resultList.Count();
+
             return View(employeeDashboardViewModel);
         }
     }

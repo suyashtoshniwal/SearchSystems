@@ -85,13 +85,25 @@
             </th>
         </tr>
         <tr>
-            @Html.ActionLink("Employees to Start PF For", "Index", "home", new { pfview = true }, null)
+            <th>
+                @Html.ActionLink(Model.EmpServiceCount.ToString(), "Index", "home")
+
+            </th>
         </tr>
         <tr>
-            @Html.ActionLink("Employees to Start Gratuity For", "Index", "home", new { gratuityview = true }, null)
+            <th>
+                @Html.ActionLink("Employees to Start PF For", "Index", "home", new { pfview = true }, null)
+            </th>
         </tr>
         <tr>
-            @Html.ActionLink("Employees to Start Insurance For", "Index", "home", new { insuranceview = true }, null)
+            <th>
+                @Html.ActionLink("Employees to Start Gratuity For", "Index", "home", new { gratuityview = true }, null)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.ActionLink("Employees to Start Insurance For", "Index", "home", new { insuranceview = true }, null)
+            </th>
         </tr>
     </table>
     <div id="employeeColumnChart"></div>
