@@ -9,6 +9,10 @@ namespace SearchSystems.ViewModels
     {
         public int TotalEmployeesNumber { get; set; }
 
+        public int TotalMaleEmployeesNumber { get; set; }
+
+        public int TotalFemaleEmployeesNumber { get; set; }
+
         public int TotalEmpNumberPFTostartFor { get; set; }
 
         public int EmpServiceCount { get; set; }

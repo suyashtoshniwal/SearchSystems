@@ -1,15 +1,15 @@
 ﻿@model SearchSystems.ViewModels.EmployeeDashboardVM
 
 @{
-    ViewBag.Title = "Dashboard";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                ViewBag.Title = "Dashboard";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Dashboard</h2>
 @using (Html.BeginForm())
 {
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-   
+
 
     <script>
         $(document).ready(function () {
@@ -80,10 +80,29 @@
     <table class="table">
         <tr>
             <th>
-                @Html.ActionLink(Model.TotalEmployeesNumber.ToString(), "Index", "home")
-
+                @Html.Label("Total Employees : ")@Html.ActionLink(Model.TotalEmployeesNumber.ToString(), "Index", "home")
+            </th>
+            <th>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalMaleEmployeesNumber, "Male:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.TotalMaleEmployeesNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalMaleEmployeesNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalFemaleEmployeesNumber, "Female:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.TotalFemaleEmployeesNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalFemaleEmployeesNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </th>
         </tr>
+    </table>
+    <table class="table">
         <tr>
             <th>
                 @Html.ActionLink(Model.EmpServiceCount.ToString(), "Index", "home")

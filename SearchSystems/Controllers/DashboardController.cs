@@ -42,6 +42,9 @@ namespace SearchSystems.Controllers
             var employeeDashboardViewModel = new EmployeeDashboardVM();
             employeeDashboardViewModel.TotalEmployeesNumber = db.Employees.Count();
 
+            employeeDashboardViewModel.TotalMaleEmployeesNumber= db.Employees.Where(e => e.Gender.Equals("Male")).Count() ;
+
+            employeeDashboardViewModel.TotalFemaleEmployeesNumber = db.Employees.Where(e => e.Gender.Equals("Female")).Count();
             // Get employees for whom PF needs to be started
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));
