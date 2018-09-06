@@ -25,7 +25,6 @@
           <Property Name="BloodGroup" Type="varchar" MaxLength="50" />
           <Property Name="MobileNumber" Type="varchar" MaxLength="10" />
           <Property Name="WhatsAppNumber" Type="varchar" MaxLength="10" />
-          <Property Name="LandlineNumber" Type="varchar" MaxLength="10" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
           <Property Name="OfficeEmailAddress" Type="varchar" MaxLength="50" />
           <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
@@ -33,9 +32,9 @@
           <Property Name="District" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="50" />
           <Property Name="Country" Type="varchar" MaxLength="50" />
-          <Property Name="PinCode" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PinCode" Type="varchar" MaxLength="10" />
           <Property Name="Designation" Type="varchar" MaxLength="50" />
-          <Property Name="Salary" Type="decimal" Precision="6" Scale="0" />
+          <Property Name="Salary" Type="varchar" MaxLength="10" />
           <Property Name="DateOfJoining" Type="date" />
           <Property Name="ProbationPeriod" Type="int" />
           <Property Name="PFAccountNumber" Type="varchar" MaxLength="50" />
@@ -48,7 +47,7 @@
           <Property Name="BankName" Type="varchar" MaxLength="50" />
           <Property Name="BankBranchName" Type="varchar" MaxLength="20" />
           <Property Name="BankIFSCCode" Type="varchar" MaxLength="20" />
-          <Property Name="AadharNumber" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="AadharNumber" Type="varchar" MaxLength="12" />
           <Property Name="PANNumber" Type="varchar" MaxLength="15" />
           <Property Name="DrivingLicenseNumber" Type="varchar" MaxLength="20" />
           <Property Name="VehicleNumber" Type="varchar" MaxLength="15" />
@@ -104,7 +103,6 @@
           <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="WhatsAppNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="LandlineNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OfficeEmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -112,9 +110,9 @@
           <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PinCode" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PinCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Salary" Type="Decimal" Precision="6" Scale="0" />
+          <Property Name="Salary" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DateOfJoining" Type="DateTime" Precision="0" />
           <Property Name="ProbationPeriod" Type="Int32" />
           <Property Name="PFStartDate" Type="DateTime" Precision="0" />
@@ -128,7 +126,7 @@
           <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BankBranchName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="BankIFSCCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="AadharNumber" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="AadharNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="PANNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="DrivingLicenseNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="VehicleNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
@@ -202,7 +200,6 @@
                 <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
                 <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
                 <ScalarProperty Name="WhatsAppNumber" ColumnName="WhatsAppNumber" />
-                <ScalarProperty Name="LandlineNumber" ColumnName="LandlineNumber" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="OfficeEmailAddress" ColumnName="OfficeEmailAddress" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -210,7 +207,7 @@
                 <ScalarProperty Name="District" ColumnName="District" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode"/>
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
