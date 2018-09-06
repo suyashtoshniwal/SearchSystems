@@ -1,8 +1,8 @@
 ﻿@model SearchSystems.ViewModels.EmployeeDashboardVM
 
 @{
-                ViewBag.Title = "Dashboard";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Dashboard</h2>
@@ -102,29 +102,36 @@
             </th>
         </tr>
     </table>
-    <table class="table">
+    <hr />
+    @Html.Label("Pending Dues : Need to take Action")
+    <table>
         <tr>
-            <th>
-                @Html.ActionLink(Model.EmpServiceCount.ToString(), "Index", "home")
-
-            </th>
+            <td>
+                <div class="form-group">
+                    @Html.ActionLink(Model.EmpServiceCount.ToString(), "Index", "home")
+                </div>
+            </td>
         </tr>
         <tr>
-            <th>
-                @Html.ActionLink("Employees to Start PF For", "Index", "home", new { pfview = true }, null)
-            </th>
+            <td>
+                <div class="form-group">
+                    @Html.ActionLink("Provident Fund(PF) :", "Index", "home", new { pfview = true }, null)
+            </div>
+                    </td>
         </tr>
         <tr>
-            <th>
-                @Html.ActionLink("Employees to Start Gratuity For", "Index", "home", new { gratuityview = true }, null)
-            </th>
+            <td>
+                <div class="form-group">
+                    @Html.ActionLink("Gratuity :", "Index", "home", new { gratuityview = true }, null)
+            </div>
+                    </td>
         </tr>
         <tr>
-            <th>
-                @Html.ActionLink("Employees to Start Insurance For", "Index", "home", new { insuranceview = true }, null)
-            </th>
+            <td>
+                @Html.ActionLink("Medical Insurance :", "Index", "home", new { insuranceview = true }, null)
+            </td>
         </tr>
     </table>
-    <div id="employeeColumnChart"></div>
+    @*<div id="employeeColumnChart"></div>*@
 }
 
