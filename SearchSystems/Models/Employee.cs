@@ -43,7 +43,6 @@ namespace SearchSystems.Models
         public Nullable<System.DateTime> DateOfJoining { get; set; }
         public Nullable<int> ProbationPeriod { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PFStartDate { get; set; }
         public string PFAccountNumber { get; set; }
         public string PFUANNumber { get; set; }
