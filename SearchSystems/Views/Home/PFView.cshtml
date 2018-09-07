@@ -8,10 +8,11 @@
 
 }
 
-<h2>Employee List</h2>
+<h2>Pending PF List</h2>
 
 @using (Html.BeginForm("EnablePF", "Home", FormMethod.Post))
 {
+    <h4>Click on Checkbox to start PF of Employee</h4>
     @Html.TextBox("Search")
 
     <input type="submit" name="submit" value="Search" formaction="Index" />

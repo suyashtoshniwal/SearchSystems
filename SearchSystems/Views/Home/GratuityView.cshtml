@@ -8,10 +8,11 @@
 
 }
 
-<h2>Employee List</h2>
+<h2>Pending Gratuity List</h2>
 
 @using (Html.BeginForm("EnableGratuity", "Home", FormMethod.Post))
 {
+    <h4>Click on Checkbox to Start Gratuity</h4>
     @Html.TextBox("Search")
 
     <input type="submit" name="submit" value="Search" formaction="Index" />
@@ -38,13 +39,13 @@
                 Department
             </th>
             <th>
-                DateOfJoining
+                Date Of Joining
             </th>
             <th>
-                GratuityStartDate
+                Gratuity Start Date
             </th>
             <th>
-                GratuityStatus
+                Gratuity Status
             </th>
             <th></th>
         </tr>
@@ -71,7 +72,7 @@
                     @Html.DisplayFor(modelItem => Model[i].GratuityStartDate)
                 </td>
                 <td>
-                    @Html.CheckBoxFor(modelItem => Model[i].GratuityStatus.Value, new { @class = "" })
+                    @Html.CheckBoxFor(modelItem => Model[i].GratuityStatus, new { @class = "" })
                 </td>
                 @*<td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
