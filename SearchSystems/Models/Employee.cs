@@ -41,10 +41,6 @@ namespace SearchSystems.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfJoining { get; set; }
-
-        [NotMapped]
-        public TimeSpan YearsOfExperience { get { return DateTime.Today.Subtract(this.DateOfJoining.Value); } }
-
         public Nullable<int> ProbationPeriod { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
