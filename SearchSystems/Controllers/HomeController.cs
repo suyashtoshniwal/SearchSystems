@@ -31,17 +31,17 @@ namespace SearchSystems.Controllers
 
             if(PFView)
             {
-                DateTime testGreaterThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
+                DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
 
-                searchedEmployees = searchedEmployees.Where(e => e.PFStartDate <= testGreaterThanDate && e.PFStatus == false);
+                searchedEmployees = searchedEmployees.Where(e => e.PFStartDate <= testLessThanDate && e.PFStatus == false);
 
                 var searchedEmployees1 = searchedEmployees.ToList();
             }
             if (gratuityView)
             {
-                DateTime testGreaterThanDate = DateTime.Now.Subtract(new TimeSpan(120, 0, 0, 0));
+                DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(120, 0, 0, 0));
 
-                searchedEmployees = searchedEmployees.Where(e => e.GratuityStartDate >= testGreaterThanDate && e.GratuityStatus == false);
+                searchedEmployees = searchedEmployees.Where(e=> e.GratuityStartDate <= testLessThanDate && e.GratuityStatus == false);
             }
             if (insuranceView)
             {
