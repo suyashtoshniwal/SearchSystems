@@ -108,16 +108,9 @@
         <tr>
             <td>
                 <div class="form-group">
-                    @Html.ActionLink(Model.EmpServiceCount.ToString(), "Index", "home")
+                    @Html.ActionLink("Provident Fund (PF) :", "Index", "home", new { pfview = true }, null)@Html.ActionLink(Model.TotalPFPendig.ToString(),"Index","Home")
                 </div>
             </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="form-group">
-                    @Html.ActionLink("Provident Fund(PF) :", "Index", "home", new { pfview = true }, null)
-            </div>
-                    </td>
         </tr>
         <tr>
             <td>
