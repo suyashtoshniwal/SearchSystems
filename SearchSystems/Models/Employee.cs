@@ -22,6 +22,7 @@ namespace SearchSystems.Models
         public decimal DepartmentId { get; set; }
         public string Gender { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DOB { get; set; }
         public string BloodGroup { get; set; }
         public string MobileNumber { get; set; }
@@ -38,6 +39,7 @@ namespace SearchSystems.Models
         public string Designation { get; set; }
         public string Salary { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfJoining { get; set; }
 
         [NotMapped]
@@ -45,14 +47,17 @@ namespace SearchSystems.Models
 
         public Nullable<int> ProbationPeriod { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PFStartDate { get; set; }
         public string PFAccountNumber { get; set; }
         public string PFUANNumber { get; set; }
         public string GratuityNumber { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> GratuityStartDate { get; set; }
         public string MedicalInsuranceNumber { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> InsuranceExpiryDate { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
@@ -65,6 +70,7 @@ namespace SearchSystems.Models
         public Nullable<bool> PFStatus { get; set; }
         public Nullable<bool> GratuityStatus { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> InsuranceRenewalDate { get; set; }
     
         public virtual Department Department { get; set; }
