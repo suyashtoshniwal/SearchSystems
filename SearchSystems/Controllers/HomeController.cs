@@ -34,20 +34,19 @@ namespace SearchSystems.Controllers
                 DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
 
                 searchedEmployees = searchedEmployees.Where(e => e.PFStartDate <= testLessThanDate && e.PFStatus == false);
-
-                var searchedEmployees1 = searchedEmployees.ToList();
             }
             if (gratuityView)
             {
                 DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(120, 0, 0, 0));
 
                 searchedEmployees = searchedEmployees.Where(e=> e.GratuityStartDate <= testLessThanDate && e.GratuityStatus == false);
+                var emps = searchedEmployees.ToList();
             }
             if (insuranceView)
             {
-                DateTime testGreaterThanDate = DateTime.Now.Subtract(new TimeSpan(30, 0, 0, 0));
+                DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
 
-                searchedEmployees = searchedEmployees.Where(e => e.InsuranceRenewalDate == null || e.InsuranceExpiryDate >= testGreaterThanDate);
+                searchedEmployees = searchedEmployees.Where(e => e.InsuranceRenewalDate == null || e.InsuranceExpiryDate <= testLessThanDate);
             }
             if (!String.IsNullOrEmpty(search))
             {
