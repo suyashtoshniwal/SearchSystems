@@ -62,8 +62,8 @@ namespace SearchSystems.Models
         public string PANNumber { get; set; }
         public string DrivingLicenseNumber { get; set; }
         public string VehicleNumber { get; set; }
-        public Nullable<bool> PFStatus { get; set; }
-        public Nullable<bool> GratuityStatus { get; set; }
+        public bool PFStatus { get; set; }
+        public bool GratuityStatus { get; set; }
         [DataType(DataType.Date)]
         public Nullable<System.DateTime> InsuranceRenewalDate { get; set; }
     
