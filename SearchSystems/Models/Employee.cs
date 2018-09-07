@@ -63,8 +63,8 @@ namespace SearchSystems.Models
         public string PANNumber { get; set; }
         public string DrivingLicenseNumber { get; set; }
         public string VehicleNumber { get; set; }
-        public Nullable<bool> PFStatus { get; set; }
-        public Nullable<bool> GratuityStatus { get; set; }
+        public bool PFStatus { get; set; }
+        public bool GratuityStatus { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> InsuranceRenewalDate { get; set; }
