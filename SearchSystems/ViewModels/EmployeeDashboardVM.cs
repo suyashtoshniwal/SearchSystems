@@ -14,6 +14,7 @@ namespace SearchSystems.ViewModels
         public int TotalFemaleEmployeesNumber { get; set; }
 
         public int TotalEmpNumberPFTostartFor { get; set; }
+        public int TotalEmpGratuityPending { get; set; }
 
         public int EmpServiceCount { get; set; }
 

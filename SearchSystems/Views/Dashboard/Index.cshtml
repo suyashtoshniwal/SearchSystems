@@ -108,16 +108,16 @@
         <tr>
             <td>
                 <div class="form-group">
-                    @Html.ActionLink("Provident Fund (PF) :", "Index", "home", new { pfview = true }, null)@Html.ActionLink(Model.TotalPFPendig.ToString(),"Index","Home")
+                    @Html.ActionLink("Provident Fund (PF) :", "Index", "home", new { pfview = true }, null)@Html.Label(Model.TotalEmpNumberPFTostartFor.ToString())
                 </div>
             </td>
         </tr>
         <tr>
             <td>
                 <div class="form-group">
-                    @Html.ActionLink("Gratuity :", "Index", "home", new { gratuityview = true }, null)
-            </div>
-                    </td>
+                    @Html.ActionLink("Gratuity :", "Index", "home", new { gratuityview = true }, null)@Html.Label(Model.TotalEmpGratuityPending.ToString())
+                </div>
+            </td>
         </tr>
         <tr>
             <td>

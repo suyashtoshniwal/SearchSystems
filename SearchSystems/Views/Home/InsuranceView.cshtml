@@ -62,10 +62,10 @@
                 @Html.DisplayFor(modelItem => Model[i].Department.Name)
             </td>
             <td>
-                @Html.TextBoxFor(modelItem => Model[i].InsuranceRenewalDate)
+                @Html.EditorFor(modelItem => Model[i].InsuranceRenewalDate, new { htmlAttributes = new { @class = "form-control" } })
             </td>
             <td>
-                @Html.TextBoxFor(modelItem => Model[i].InsuranceExpiryDate)
+                @Html.EditorFor(modelItem => Model[i].InsuranceExpiryDate, new { htmlAttributes = new { @class = "form-control" }})
             </td>
             @*<td>
             @Html.CheckBoxFor(modelItem => Model[i].GratuityStatus, new { @class = "" })
