@@ -1,6 +1,6 @@
 ﻿@model SearchSystems.ViewModels.EmployeeDashboardVM
 
-@{
+@{ 
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -103,7 +103,7 @@
         </tr>
     </table>
     <hr />
-    @Html.Label("Pending Dues : Need to take Action")
+    <h4>@Html.Label("Pending Dues : Need to take Action")</h4>
     <table>
         <tr>
             <td>
@@ -125,46 +125,47 @@
             </td>
         </tr>
     </table>
-    @Html.Label("EmployeeServiceDistribution")
-    <table border="1">
+    <hr />
+    <h4>@Html.Label("Employee Service Distribution")</h4>
+    <table border="1" class="text-center" cellpadding="5">
         <tr>
-            <th>YearsOfExperience</th>
+            <th>Service Duration Between</th>
             <th>No Of Employees</th>
         </tr>
         <tr>
-            <td>Less than 1 year</td>
+            <td>0 to 1 year</td>
             <td>@Model.EmployeeServiceDistribution[1]</td>
         </tr>
         <tr>
-            <td>Less than 2 year</td>
+            <td>1 to 2 years</td>
             <td>@Model.EmployeeServiceDistribution[2]</td>
         </tr>
         <tr>
-            <td>Less than 3 year</td>
+            <td>2 to 3 years</td>
             <td>@Model.EmployeeServiceDistribution[3]</td>
         </tr>
         <tr>
-            <td>Less than 5 year</td>
+            <td>3 to 5 years</td>
             <td>@Model.EmployeeServiceDistribution[5]</td>
         </tr>
         <tr>
-            <td>Less than 7 year</td>
+            <td>5 to 7 years</td>
             <td>@Model.EmployeeServiceDistribution[7]</td>
         </tr>
         <tr>
-            <td>Less than 9 year</td>
+            <td>7 to 9 years</td>
             <td>@Model.EmployeeServiceDistribution[9]</td>
         </tr>
         <tr>
-            <td>Less than 11 year</td>
+            <td>9 to 11 years</td>
             <td>@Model.EmployeeServiceDistribution[11]</td>
         </tr>
         <tr>
-            <td>Less than 13 year</td>
+            <td>11 to 13 years</td>
             <td>@Model.EmployeeServiceDistribution[13]</td>
         </tr>
         <tr>
-            <td>Less than 15 year</td>
+            <td>13 to 15 years</td>
             <td>@Model.EmployeeServiceDistribution[15]</td>
         </tr>
         <tr>
@@ -172,6 +173,49 @@
             <td>@Model.EmployeeServiceDistribution[16]</td>
         </tr>
     </table>
-    @*<div id="employeeColumnChart"></div>*@
-}
+
+    <hr />
+    <h4>@Html.Label("Distribution of Employees Joined Between Years")</h4>
+    <table border="1" class="text-center" cellpadding="5">
+        <tr>
+            <th>Between Years</th>
+            <th>Total Employees</th>
+        </tr>
+        <tr>
+            <td>Before 1990</td>
+            <td>@Model.EmployeeYearwiseDistribution[5]</td>
+        </tr>
+        <tr>
+            <td>1991 to 1995</td>
+            <td>@Model.EmployeeYearwiseDistribution[6]</td>
+        </tr>
+        <tr>
+            <td>1996 to 2000</td>
+            <td>@Model.EmployeeYearwiseDistribution[7]</td>
+        </tr>
+        <tr>
+            <td>2001 to 2005</td>
+            <td>@Model.EmployeeYearwiseDistribution[1]</td>
+        </tr>
+        <tr>
+            <td>2006 to 2010</td>
+            <td>@Model.EmployeeYearwiseDistribution[2]</td>
+        </tr>
+        <tr>
+            <td>2011 to 2015</td>
+            <td>@Model.EmployeeYearwiseDistribution[3]</td>
+        </tr>
+        <tr>
+            <td>2016 to 2020</td>
+            <td>@Model.EmployeeYearwiseDistribution[4]</td>
+        </tr>
+    </table>
+
+    <hr />
+    <h4>@Html.Label("BloodGroupwise Distribution of Employees")</h4>
+    <table border="1" class="text-center" cellpadding="5">
+        
+    </table>
+        @*<div id="employeeColumnChart"></div>*@
+        }
 
