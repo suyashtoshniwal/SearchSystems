@@ -54,7 +54,8 @@
           <Property Name="PFStartDate" Type="date" StoreGeneratedPattern="Computed" />
           <Property Name="GratuityStartDate" Type="date" StoreGeneratedPattern="Computed" />
           <Property Name="GratuityStatus" Type="bit" />
-          <Property Name="PFStatus" Type="bit" />
+          <Property Name="PFStatus" Type="bit" Nullable="false" />
+          <Property Name="YearsOfExperince" Type="int" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -131,9 +132,10 @@
           <Property Name="DrivingLicenseNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="VehicleNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
-          <Property Name="PFStatus" Type="Boolean" />
+          <Property Name="PFStatus" Type="Boolean" Nullable="false" />
           <Property Name="GratuityStatus" Type="Boolean" />
           <Property Name="InsuranceRenewalDate" Type="DateTime" Precision="0" />
+          <Property Name="YearsOfExperince" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -188,6 +190,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="SEARCHSYSTEMSModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="YearsOfExperince" ColumnName="YearsOfExperince" />
                 <ScalarProperty Name="InsuranceRenewalDate" ColumnName="InsuranceRenewalDate" />
                 <ScalarProperty Name="GratuityStatus" ColumnName="GratuityStatus" />
                 <ScalarProperty Name="PFStatus" ColumnName="PFStatus" />

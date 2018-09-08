@@ -11,9 +11,7 @@ namespace SearchSystems.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class Employee
     {
         public int Id { get; set; }
@@ -21,13 +19,10 @@ namespace SearchSystems.Models
         public string LastName { get; set; }
         public decimal DepartmentId { get; set; }
         public string Gender { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DOB { get; set; }
         public string BloodGroup { get; set; }
         public string MobileNumber { get; set; }
         public string WhatsAppNumber { get; set; }
-        
         public string EmailAddress { get; set; }
         public string OfficeEmailAddress { get; set; }
         public string Address { get; set; }
@@ -38,21 +33,14 @@ namespace SearchSystems.Models
         public string PinCode { get; set; }
         public string Designation { get; set; }
         public string Salary { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfJoining { get; set; }
         public Nullable<int> ProbationPeriod { get; set; }
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> PFStartDate { get; set; }
         public string PFAccountNumber { get; set; }
         public string PFUANNumber { get; set; }
         public string GratuityNumber { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> GratuityStartDate { get; set; }
         public string MedicalInsuranceNumber { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> InsuranceExpiryDate { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
@@ -63,10 +51,9 @@ namespace SearchSystems.Models
         public string DrivingLicenseNumber { get; set; }
         public string VehicleNumber { get; set; }
         public bool PFStatus { get; set; }
-        public bool GratuityStatus { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<bool> GratuityStatus { get; set; }
         public Nullable<System.DateTime> InsuranceRenewalDate { get; set; }
+        public Nullable<int> YearsOfExperince { get; set; }
     
         public virtual Department Department { get; set; }
     }
