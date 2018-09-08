@@ -45,6 +45,12 @@ namespace SearchSystems.Controllers
             employeeDashboardViewModel.TotalMaleEmployeesNumber= db.Employees.Where(e => e.Gender.Equals("Male")).Count() ;
 
             employeeDashboardViewModel.TotalFemaleEmployeesNumber = db.Employees.Where(e => e.Gender.Equals("Female")).Count();
+
+            DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
+            employeeDashboardViewModel.TotalEmpNumberPFTostartFor = db.Employees.Where(e => e.PFStatus == false &&  e.PFStartDate<= testLessThanDate ).Count();
+
+            DateTime testLessThanDate1 = DateTime.Now.Add(new TimeSpan(120, 0, 0, 0));
+            employeeDashboardViewModel.TotalEmpGratuityPending = db.Employees.Where(e => e.GratuityStatus == false && e.GratuityStartDate <= testLessThanDate1).Count();
             // Get employees for whom PF needs to be started
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));
