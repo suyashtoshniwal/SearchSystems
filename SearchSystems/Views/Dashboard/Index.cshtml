@@ -125,6 +125,53 @@
             </td>
         </tr>
     </table>
+    @Html.Label("EmployeeServiceDistribution")
+    <table border="1">
+        <tr>
+            <th>YearsOfExperience</th>
+            <th>No Of Employees</th>
+        </tr>
+        <tr>
+            <td>Less than 1 year</td>
+            <td>@Model.EmployeeServiceDistribution[1]</td>
+        </tr>
+        <tr>
+            <td>Less than 2 year</td>
+            <td>@Model.EmployeeServiceDistribution[2]</td>
+        </tr>
+        <tr>
+            <td>Less than 3 year</td>
+            <td>@Model.EmployeeServiceDistribution[3]</td>
+        </tr>
+        <tr>
+            <td>Less than 5 year</td>
+            <td>@Model.EmployeeServiceDistribution[5]</td>
+        </tr>
+        <tr>
+            <td>Less than 7 year</td>
+            <td>@Model.EmployeeServiceDistribution[7]</td>
+        </tr>
+        <tr>
+            <td>Less than 9 year</td>
+            <td>@Model.EmployeeServiceDistribution[9]</td>
+        </tr>
+        <tr>
+            <td>Less than 11 year</td>
+            <td>@Model.EmployeeServiceDistribution[11]</td>
+        </tr>
+        <tr>
+            <td>Less than 13 year</td>
+            <td>@Model.EmployeeServiceDistribution[13]</td>
+        </tr>
+        <tr>
+            <td>Less than 15 year</td>
+            <td>@Model.EmployeeServiceDistribution[15]</td>
+        </tr>
+        <tr>
+            <td>Above 15 years</td>
+            <td>@Model.EmployeeServiceDistribution[16]</td>
+        </tr>
+    </table>
     @*<div id="employeeColumnChart"></div>*@
 }
 

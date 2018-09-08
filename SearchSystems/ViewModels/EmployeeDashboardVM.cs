@@ -18,6 +18,8 @@ namespace SearchSystems.ViewModels
 
         public int EmpServiceCount { get; set; }
 
+        public IDictionary<int, int> EmployeeServiceDistribution = new Dictionary<int, int>();
+
         public List<object> ChartData = new List<object>();
    
     }

@@ -55,17 +55,28 @@ namespace SearchSystems.Controllers
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));
 
-            var empList = db.Employees.ToList();
-            var e1 = db.Employees.ToList()[0];
-            var exp = System.DateTime.Today - e1.DateOfJoining.Value;
-            var result = from e in db.Employees
-                         group e.Id by new { experience = DbFunctions.DiffYears(e.DateOfJoining.Value, System.DateTime.Today) }
-into g
-                         select new { g.Key.experience, CountOf = g.Count() };
+            var oneYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 0 && e.YearsOfExperince < 1).ToList().Count();
+            var twoYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 1 && e.YearsOfExperince < 2).ToList().Count();
+            var threeYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 2 && e.YearsOfExperince < 3).ToList().Count();
+            var fiveYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 3 && e.YearsOfExperince < 5).ToList().Count();
+            var sevenYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 5 && e.YearsOfExperince < 7).ToList().Count();
+            var nineExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 7 && e.YearsOfExperince < 9).ToList().Count();
+            var elevenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 9 && e.YearsOfExperince < 11).ToList().Count();
+            var thirteenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 11 && e.YearsOfExperince < 13).ToList().Count();
+            var fifteenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 13 && e.YearsOfExperince < 15).ToList().Count();
+            var aboveFifteenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 15).ToList().Count();
 
-            var resultList = result.ToList();
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(1, oneYearExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(2, twoYearExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(3, threeYearExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(5, fiveYearExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(7, sevenYearExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(9, nineExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(11, elevenExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(13, thirteenExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(15, fifteenExperienceCount);
+            employeeDashboardViewModel.EmployeeServiceDistribution.Add(16, aboveFifteenExperienceCount);
 
-            employeeDashboardViewModel.EmpServiceCount = resultList.Count();
 
             return View(employeeDashboardViewModel);
         }
