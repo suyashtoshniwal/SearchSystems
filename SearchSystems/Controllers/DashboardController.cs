@@ -77,16 +77,40 @@ namespace SearchSystems.Controllers
             employeeDashboardViewModel.EmployeeServiceDistribution.Add(15, fifteenExperienceCount);
             employeeDashboardViewModel.EmployeeServiceDistribution.Add(16, aboveFifteenExperienceCount);
 
-            var query =
-               from employee in db.Employees join department in db.Departments
-               on employee.DepartmentId equals department.Id
-               group employee by employee.DepartmentId into e
-               select new { Name = e.FirstOrDefault(e1 => e1.Department.Name.Length >0).Department.Name, Count = e.Count(), TotalSalary = e.Sum(e1 => (int)e1.Salary)};
+            var startingDate = new DateTime(2001, 01, 01);
+            var endingDate = new DateTime(2005, 12, 31);
+            var twoToFive = db.Employees.Where(e => e.DateOfJoining >= startingDate  && e.DateOfJoining <= endingDate).ToList().Count();
 
-            var queryResult = query.ToList();
+            startingDate = new DateTime(2006, 01, 01);
+            endingDate = new DateTime(2010, 12, 31);
+            var fiveToTen = db.Employees.Where(e => e.DateOfJoining >= startingDate && e.DateOfJoining <= endingDate).ToList().Count();
 
-            
+            startingDate = new DateTime(2011, 01, 01);
+            endingDate = new DateTime(2015, 12, 31);
+            var elevenToFifteen = db.Employees.Where(e => e.DateOfJoining >= startingDate && e.DateOfJoining <= endingDate).ToList().Count();
 
+            startingDate = new DateTime(2016, 01, 01);
+            endingDate = new DateTime(2020, 12, 31);
+            var sixteenToTweety = db.Employees.Where(e => e.DateOfJoining >= startingDate && e.DateOfJoining <= endingDate).ToList().Count();
+
+            startingDate = new DateTime(1990, 12, 31);
+            var beforeNinty = db.Employees.Where(e => e.DateOfJoining <= startingDate).ToList().Count();
+
+            startingDate = new DateTime(1991, 01, 01);
+            endingDate = new DateTime(1995, 12, 31);
+            var nintyOneToFive = db.Employees.Where(e => e.DateOfJoining >= startingDate && e.DateOfJoining <= endingDate).ToList().Count();
+
+            startingDate = new DateTime(1996, 01, 01);
+            endingDate = new DateTime(2000, 12, 31);
+            var nintyFiveToZero = db.Employees.Where(e => e.DateOfJoining >= startingDate && e.DateOfJoining <= endingDate).ToList().Count();
+
+            employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(1, twoToFive);
+            employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(2, fiveToTen);
+            employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(3, elevenToFifteen);
+            employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(4, sixteenToTweety);
+            employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(5, beforeNinty);
+            employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(6, nintyOneToFive);
+            employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(7, nintyFiveToZero);
             return View(employeeDashboardViewModel);
         }
     }
