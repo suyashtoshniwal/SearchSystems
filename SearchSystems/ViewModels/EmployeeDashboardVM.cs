@@ -20,6 +20,8 @@ namespace SearchSystems.ViewModels
 
         public IDictionary<int, int> EmployeeServiceDistribution = new Dictionary<int, int>();
 
+        public IDictionary<int, int> EmployeeYearwiseDistribution = new Dictionary<int, int>();
+
         public List<object> ChartData = new List<object>();
    
     }
