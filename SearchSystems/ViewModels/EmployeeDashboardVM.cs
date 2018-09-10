@@ -23,6 +23,18 @@ namespace SearchSystems.ViewModels
         public IDictionary<int, int> EmployeeYearwiseDistribution = new Dictionary<int, int>();
 
         public List<object> ChartData = new List<object>();
-   
+
+        public List<DepartmentDistribution> DepartmentDistributions = new List<DepartmentDistribution>();
+
+    }
+
+    public class DepartmentDistribution
+    {
+        public string Name { get; set; }
+
+        public int TotalEmployees { get; set; }
+
+        public Nullable<int> TotalSalary { get; set; }
+
     }
 }

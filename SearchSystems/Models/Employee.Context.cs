@@ -27,5 +27,6 @@ namespace SearchSystems.Models
     
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<SalaryDistribution> SalaryDistributions { get; set; }
     }
 }

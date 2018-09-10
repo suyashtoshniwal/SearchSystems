@@ -1,6 +1,6 @@
 ﻿@model SearchSystems.ViewModels.EmployeeDashboardVM
 
-@{ 
+@{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -212,10 +212,34 @@
     </table>
 
     <hr />
-    <h4>@Html.Label("BloodGroupwise Distribution of Employees")</h4>
+    <h4>@Html.Label("Departmentwise Distribution")</h4>
     <table border="1" class="text-center" cellpadding="5">
+        <tr>
+            <th>Department</th>
+            <th>Total Employees</th>
+            <th>Total Salary</th>
+        </tr>
         
-    </table>
+            @foreach (var item in Model.DepartmentDistributions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalEmployees)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalSalary)
+                </td>
+            </tr>
+
+        }
+            
+        </table>
+        <hr />
+        <h4>@Html.Label("BloodGroupwise Distribution of Employees")</h4>
+        <table border="1" class="text-center" cellpadding="5"></table>
         @*<div id="employeeColumnChart"></div>*@
         }
 

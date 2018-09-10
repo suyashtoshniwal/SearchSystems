@@ -111,6 +111,16 @@ namespace SearchSystems.Controllers
             employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(5, beforeNinty);
             employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(6, nintyOneToFive);
             employeeDashboardViewModel.EmployeeYearwiseDistribution.Add(7, nintyFiveToZero);
+
+            var query =
+              from employee in db.Employees join department in db.Departments
+              on employee.DepartmentId equals department.Id
+              group employee by employee.DepartmentId into e
+              select new DepartmentDistribution { Name = e.FirstOrDefault(e1 => e1.Department.Name.Length > 0).Department.Name, TotalEmployees = e.Count(), TotalSalary = e.Sum(e1 => e1.Salary) };
+              
+
+            employeeDashboardViewModel.DepartmentDistributions = query.ToList();
+
             return View(employeeDashboardViewModel);
         }
     }

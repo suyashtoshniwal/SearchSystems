@@ -9,6 +9,8 @@
         <EntityTypeShape EntityType="SEARCHSYSTEMSModel.Employee" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="SEARCHSYSTEMSModel.FK_Department_Department" ManuallyRouted="false" />
         <AssociationConnector Association="SEARCHSYSTEMSModel.FK_Employee_Department" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SEARCHSYSTEMSModel.SalaryDistribution" Width="1.5" PointX="5.25" PointY="4.75" />
+        <AssociationConnector Association="SEARCHSYSTEMSModel.FK_SalaryDistribution_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

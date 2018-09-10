@@ -20,6 +20,7 @@ namespace SearchSystems.Models
         public string LastName { get; set; }
         public decimal DepartmentId { get; set; }
         public string Gender { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DOB { get; set; }
@@ -35,17 +36,25 @@ namespace SearchSystems.Models
         public string Country { get; set; }
         public string PinCode { get; set; }
         public string Designation { get; set; }
-        public string Salary { get; set; }
+        public Nullable<Int32> Salary { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfJoining { get; set; }
         public Nullable<int> ProbationPeriod { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PFStartDate { get; set; }
         public string PFAccountNumber { get; set; }
         public string PFUANNumber { get; set; }
         public string GratuityNumber { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> GratuityStartDate { get; set; }
         public string MedicalInsuranceNumber { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> InsuranceExpiryDate { get; set; }
@@ -59,11 +68,17 @@ namespace SearchSystems.Models
         public string VehicleNumber { get; set; }
         public bool PFStatus { get; set; }
         public bool GratuityStatus { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> InsuranceRenewalDate { get; set; }
         public Nullable<int> YearsOfExperince { get; set; }
+        public string IsAccomodationProvided { get; set; }
+        public string InsuranceBankName { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> LastWorkingDay { get; set; }
     
         public virtual Department Department { get; set; }
+        public virtual SalaryDistribution SalaryDistribution { get; set; }
     }
 }
