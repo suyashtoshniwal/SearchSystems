@@ -77,6 +77,15 @@ namespace SearchSystems.Controllers
             employeeDashboardViewModel.EmployeeServiceDistribution.Add(15, fifteenExperienceCount);
             employeeDashboardViewModel.EmployeeServiceDistribution.Add(16, aboveFifteenExperienceCount);
 
+            var query =
+               from employee in db.Employees join department in db.Departments
+               on employee.DepartmentId equals department.Id
+               group employee by employee.DepartmentId into e
+               select new { Name = e.FirstOrDefault(e1 => e1.Department.Name.Length >0).Department.Name, Count = e.Count(), TotalSalary = e.Sum(e1 => (int)e1.Salary)};
+
+            var queryResult = query.ToList();
+
+            
 
             return View(employeeDashboardViewModel);
         }
