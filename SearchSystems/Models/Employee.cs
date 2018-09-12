@@ -76,6 +76,9 @@ namespace SearchSystems.Models
         public string IsAccomodationProvided { get; set; }
         public string InsuranceBankName { get; set; }
         public bool IsActive { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> LastWorkingDay { get; set; }
     
         public virtual Department Department { get; set; }
