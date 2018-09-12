@@ -61,21 +61,27 @@
         @Html.LabelFor(model => model.BloodGroup, "Blood Group", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.BloodGroup, new List<SelectListItem>
-    {
-        new SelectListItem{ Text="O +ve", Value = "O +ve" },
-        new SelectListItem{ Text="O -ve", Value = "O -ve" },
-        new SelectListItem{ Text="A +ve", Value = "A +ve" },
-        new SelectListItem{ Text="A -ve", Value = "A -ve" },
-        new SelectListItem{ Text="B +ve", Value = "B +ve" },
-        new SelectListItem{ Text="B -ve", Value = "B -ve" },
-        new SelectListItem{ Text="AB +ve", Value = "AB +ve"},
-        new SelectListItem{ Text="AB -ve", Value = "AB -ve"}
-    })
+{
+new SelectListItem{ Text="O +ve", Value = "O +ve" },
+new SelectListItem{ Text="O -ve", Value = "O -ve" },
+new SelectListItem{ Text="A +ve", Value = "A +ve" },
+new SelectListItem{ Text="A -ve", Value = "A -ve" },
+new SelectListItem{ Text="B +ve", Value = "B +ve" },
+new SelectListItem{ Text="B -ve", Value = "B -ve" },
+new SelectListItem{ Text="AB +ve", Value = "AB +ve"},
+new SelectListItem{ Text="AB -ve", Value = "AB -ve"}
+})
 
             @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsActive, "IsActive", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.IsActive, new { @class = "" })
+            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+        </div>
+    </div>
     <div class="form-group">
         @Html.LabelFor(model => model.MobileNumber, "Mobile Number", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">

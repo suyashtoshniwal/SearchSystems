@@ -27,7 +27,7 @@ namespace SearchSystems.Controllers
             ViewBag.Search = search;
             ViewBag.PFView = PFView;
             previousSortTerm = String.IsNullOrEmpty(previousSortTerm) ? "Name" : previousSortTerm;
-            IQueryable<Employee> searchedEmployees = db.Employees;
+            IQueryable<Employee> searchedEmployees = db.Employees.Where(employee => employee.IsActive == true);
 
             if(PFView)
             {
@@ -294,7 +294,7 @@ namespace SearchSystems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,Salary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,VehicleNumber")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,IsActive,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,Salary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,VehicleNumber")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -402,11 +402,25 @@ namespace SearchSystems.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(decimal id)
+        public ActionResult DeleteConfirmed([Bind(Include = "Id,LastWorkingDay")]Employee employee)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                Employee existingEmployee = db.Employees.Find(employee.Id);
+                existingEmployee.LastWorkingDay = employee.LastWorkingDay;
+                employee = existingEmployee;
+                employee.IsActive = false;
+                db.Entry(employee).State = EntityState.Modified;
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch(Exception e)
+                {
+
+                }
+            }
             return RedirectToAction("Index");
         }
 

@@ -40,31 +40,32 @@ namespace SearchSystems.Controllers
         public ActionResult Index()
         {
             var employeeDashboardViewModel = new EmployeeDashboardVM();
-            employeeDashboardViewModel.TotalEmployeesNumber = db.Employees.Count();
+            IQueryable<Employee> searchedEmployees = db.Employees.Where(employee => employee.IsActive == true);
+            employeeDashboardViewModel.TotalEmployeesNumber = searchedEmployees.Count();
 
-            employeeDashboardViewModel.TotalMaleEmployeesNumber= db.Employees.Where(e => e.Gender.Equals("Male")).Count() ;
+            employeeDashboardViewModel.TotalMaleEmployeesNumber= searchedEmployees.Where(e => e.Gender.Equals("Male")).Count() ;
 
-            employeeDashboardViewModel.TotalFemaleEmployeesNumber = db.Employees.Where(e => e.Gender.Equals("Female")).Count();
+            employeeDashboardViewModel.TotalFemaleEmployeesNumber = searchedEmployees.Where(e => e.Gender.Equals("Female")).Count();
 
             DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
-            employeeDashboardViewModel.TotalEmpNumberPFTostartFor = db.Employees.Where(e => e.PFStatus == false &&  e.PFStartDate<= testLessThanDate ).Count();
+            employeeDashboardViewModel.TotalEmpNumberPFTostartFor = searchedEmployees.Where(e => e.PFStatus == false &&  e.PFStartDate<= testLessThanDate ).Count();
 
             DateTime testLessThanDate1 = DateTime.Now.Add(new TimeSpan(120, 0, 0, 0));
-            employeeDashboardViewModel.TotalEmpGratuityPending = db.Employees.Where(e => e.GratuityStatus == false && e.GratuityStartDate <= testLessThanDate1).Count();
+            employeeDashboardViewModel.TotalEmpGratuityPending = searchedEmployees.Where(e => e.GratuityStatus == false && e.GratuityStartDate <= testLessThanDate1).Count();
             // Get employees for whom PF needs to be started
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));
 
-            var oneYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 0 && e.YearsOfExperince < 1).ToList().Count();
-            var twoYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 1 && e.YearsOfExperince < 2).ToList().Count();
-            var threeYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 2 && e.YearsOfExperince < 3).ToList().Count();
-            var fiveYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 3 && e.YearsOfExperince < 5).ToList().Count();
-            var sevenYearExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 5 && e.YearsOfExperince < 7).ToList().Count();
-            var nineExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 7 && e.YearsOfExperince < 9).ToList().Count();
-            var elevenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 9 && e.YearsOfExperince < 11).ToList().Count();
-            var thirteenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 11 && e.YearsOfExperince < 13).ToList().Count();
-            var fifteenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 13 && e.YearsOfExperince < 15).ToList().Count();
-            var aboveFifteenExperienceCount = db.Employees.Where(e => e.YearsOfExperince >= 15).ToList().Count();
+            var oneYearExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 0 && e.YearsOfExperince < 1).ToList().Count();
+            var twoYearExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 1 && e.YearsOfExperince < 2).ToList().Count();
+            var threeYearExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 2 && e.YearsOfExperince < 3).ToList().Count();
+            var fiveYearExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 3 && e.YearsOfExperince < 5).ToList().Count();
+            var sevenYearExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 5 && e.YearsOfExperince < 7).ToList().Count();
+            var nineExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 7 && e.YearsOfExperince < 9).ToList().Count();
+            var elevenExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 9 && e.YearsOfExperince < 11).ToList().Count();
+            var thirteenExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 11 && e.YearsOfExperince < 13).ToList().Count();
+            var fifteenExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 13 && e.YearsOfExperince < 15).ToList().Count();
+            var aboveFifteenExperienceCount = searchedEmployees.Where(e => e.YearsOfExperince >= 15).ToList().Count();
 
             employeeDashboardViewModel.EmployeeServiceDistribution.Add(1, oneYearExperienceCount);
             employeeDashboardViewModel.EmployeeServiceDistribution.Add(2, twoYearExperienceCount);
@@ -115,6 +116,7 @@ namespace SearchSystems.Controllers
             var query =
               from employee in db.Employees join department in db.Departments
               on employee.DepartmentId equals department.Id
+              where employee.IsActive == true
               group employee by employee.DepartmentId into e
               select new DepartmentDistribution { Name = e.FirstOrDefault(e1 => e1.Department.Name.Length > 0).Department.Name, TotalEmployees = e.Count(), TotalSalary = e.Sum(e1 => e1.Salary) };
               
