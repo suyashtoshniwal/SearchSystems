@@ -22,6 +22,8 @@ namespace SearchSystems.ViewModels
 
         public IDictionary<int, int> EmployeeYearwiseDistribution = new Dictionary<int, int>();
 
+        public IDictionary<string,int> BloodGroups = new Dictionary<string,int>();
+
         public List<object> ChartData = new List<object>();
 
         public List<DepartmentDistribution> DepartmentDistributions = new List<DepartmentDistribution>();

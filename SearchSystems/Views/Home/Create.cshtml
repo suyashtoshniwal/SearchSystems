@@ -61,6 +61,7 @@
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.BloodGroup, new List<SelectListItem>
             {
+                new SelectListItem{ Text="Not Known", Value="Unknown", Selected=true},
                 new SelectListItem{ Text="O +ve", Value = "O +ve" },
                 new SelectListItem{ Text="O -ve", Value = "O -ve" },
                 new SelectListItem{ Text="A +ve", Value = "A +ve" },

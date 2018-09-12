@@ -75,7 +75,7 @@ namespace SearchSystems.Models
         public Nullable<int> YearsOfExperince { get; set; }
         public string IsAccomodationProvided { get; set; }
         public string InsuranceBankName { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<System.DateTime> LastWorkingDay { get; set; }
     
         public virtual Department Department { get; set; }
