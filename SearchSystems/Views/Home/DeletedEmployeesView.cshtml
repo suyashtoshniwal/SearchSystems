@@ -1,0 +1,93 @@
+﻿@model IList<SearchSystems.Models.Employee>
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Deleted Employee List";
+    string currentSearch = ViewBag.Search;
+    string currentSortTerm = ViewBag.PreviousSortTerm;
+
+}
+
+<h2>Deleted Employees List</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBox("Search")
+
+    <input type="submit" name="submit" value="Search" formaction="Index" />
+
+    <input type="hidden" name="deletedEmployeesView" value="true" />
+
+    <p></p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Employee Id", "Index",
+                                      new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+            </th>
+            <th>
+                @Html.ActionLink("First Name", "Index",
+                                      new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+            </th>
+            <th>
+                @Html.ActionLink("Last Name", "Index",
+                                                 new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                DateOfJoining
+            </th>
+            <th>
+                Last Working Day
+            </th>
+            <th>
+                Service Duration (Months)
+            </th>
+            <th></th>
+        </tr>
+
+        @for (var i = 0; i < Model.Count; i++)
+        {
+            TimeSpan? serviceDuration = new TimeSpan(0,0,0,0);
+            double months = 0;
+
+            if (Model[i].LastWorkingDay.HasValue)
+            {
+                serviceDuration = Model[i].LastWorkingDay.Value - Model[i].DateOfJoining.Value;
+                months = serviceDuration.Value.TotalDays / 30;
+            }
+
+        <tr>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].Id, new { @style = "border: 0px" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].DateOfJoining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].LastWorkingDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => months)
+            </td>
+            @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>*@
+        </tr>
+        }
+    </table>
+}

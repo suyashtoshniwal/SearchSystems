@@ -16,6 +16,8 @@ namespace SearchSystems.ViewModels
         public int TotalEmpNumberPFTostartFor { get; set; }
         public int TotalEmpGratuityPending { get; set; }
 
+        public int PastEmployees { get; set; }
+
         public int EmpServiceCount { get; set; }
 
         public IDictionary<int, int> EmployeeServiceDistribution = new Dictionary<int, int>();

@@ -101,6 +101,11 @@
                 </div>
             </th>
         </tr>
+        <tr>
+            <th>
+                @Html.Label("Past Employees : ")@Html.ActionLink(Model.PastEmployees.ToString(), "Index", "home", new { deletedEmployeesView = true }, null)
+            </th>
+        </tr>
     </table>
     <hr />
     <h4 style="color:orangered">@Html.Label("Pending Dues : Need to take Action")</h4>
@@ -130,7 +135,7 @@
 
     <div class="container">
         <div style="float:left;padding: 10px; margin-left: 15px; background-color:">
-            <h4 style="color:orangered">@Html.Label("Employee Service Distribution")</h4>
+            <h4 style="color:#b24735">@Html.Label("Employee Service Distribution")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
                     <th>Service Duration Between</th>
@@ -181,7 +186,7 @@
 
         <div style="float:left;padding: 10px; margin-left: 60px">
 
-            <h4 style="color:orangered">@Html.Label("Departmentwise Distribution")</h4>
+            <h4 style="color:#b24735">@Html.Label("Departmentwise Distribution")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
                     <th>Department</th>
@@ -209,7 +214,7 @@
         </div>
 
         <div style="float:left;padding: 10px; margin-left: 60px">
-            <h4 style="color:orangered">@Html.Label("Distribution of Employees Joined")</h4>
+            <h4 style="color:#b24735">@Html.Label("Distribution of Employees Joined")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
                     <th>Between Years</th>
@@ -250,7 +255,7 @@
     </div>
   
     <hr />
-    <h4 style="color:orangered">@Html.Label("Blood Groupwise Distribution")</h4>
+    <h4 style="color:#b24735">@Html.Label("Blood Groupwise Distribution")</h4>
     <table border="1" class="text-center" cellpadding="5">
         <tr style="color:#b24735">
             <th>Blood Group</th>

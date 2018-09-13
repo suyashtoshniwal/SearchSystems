@@ -463,6 +463,7 @@
     <Content Include="Views\Shared\Editor Templates\DateTime.cshtml" />
     <Content Include="Views\Home\GratuityView.cshtml" />
     <Content Include="Views\Home\InsuranceView.cshtml" />
+    <Content Include="Views\Home\DeletedEmployeesView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -511,7 +512,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52670</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52690/</IISUrl>
+          <IISUrl>http://localhost:52691/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

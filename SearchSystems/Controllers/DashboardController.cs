@@ -47,6 +47,8 @@ namespace SearchSystems.Controllers
 
             employeeDashboardViewModel.TotalFemaleEmployeesNumber = searchedEmployees.Where(e => e.Gender.Equals("Female")).Count();
 
+            employeeDashboardViewModel.PastEmployees = db.Employees.Where(e => e.IsActive == false).Count();
+
             DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
             employeeDashboardViewModel.TotalEmpNumberPFTostartFor = searchedEmployees.Where(e => e.PFStatus == false &&  e.PFStartDate<= testLessThanDate ).Count();
 

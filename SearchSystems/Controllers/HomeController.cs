@@ -21,7 +21,7 @@ namespace SearchSystems.Controllers
         public ActionResult Index(string search, string previousSortOrder,
                                   string previousSortTerm, string CurrentSortTerm,
                                   int? page, bool PFView = false, bool gratuityView = false,
-                                  bool insuranceView = false)
+                                  bool insuranceView = false, bool deletedEmployeesView = false)
         {
 
             ViewBag.Search = search;
@@ -48,6 +48,11 @@ namespace SearchSystems.Controllers
 
                 searchedEmployees = searchedEmployees.Where(e => e.InsuranceRenewalDate == null || e.InsuranceExpiryDate <= testLessThanDate);
             }
+            if (deletedEmployeesView)
+            {
+                searchedEmployees = db.Employees.Where(e => e.IsActive == false);
+            }
+
             if (!String.IsNullOrEmpty(search))
             {
                 searchedEmployees = searchedEmployees.Where(e => e.FirstName.StartsWith(search) || e.LastName.StartsWith(search));
@@ -204,6 +209,10 @@ namespace SearchSystems.Controllers
             if (insuranceView)
             {
                 return View("InsuranceView", sortedmployees.ToList());
+            }
+            if (deletedEmployeesView)
+            {
+                return View("DeletedEmployeesView", sortedmployees.ToList());
             }
             return View(sortedmployees);
         }
