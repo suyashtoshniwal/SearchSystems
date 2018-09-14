@@ -13,10 +13,10 @@ namespace SearchSystems.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SEARCHSYSTEMSEntities4 : DbContext
+    public partial class Entities : DbContext
     {
-        public SEARCHSYSTEMSEntities4()
-            : base("name=SEARCHSYSTEMSEntities4")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,10 +25,6 @@ namespace SearchSystems.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<SalaryDistribution> SalaryDistributions { get; set; }
-
-        public System.Data.Entity.DbSet<SearchSystems.Models.FixedDeposit> FixedDeposits { get; set; }
+        public virtual DbSet<FixedDeposit> FixedDeposits { get; set; }
     }
 }

@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FixedDepositsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EmployeesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +228,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Employee.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FixedDeposit.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FixedDeposit.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FixedDeposit.cs">
+      <DependentUpon>FixedDeposit.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FixedDeposit.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FixedDeposit.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FixedDeposit1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FixedDeposit.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SalaryDistribution.cs">
       <DependentUpon>Employee.tt</DependentUpon>
@@ -343,6 +362,16 @@
       <DependentUpon>Employee.edmx</DependentUpon>
       <LastGenOutput>Employee1.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\FixedDeposit.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FixedDeposit.edmx</DependentUpon>
+      <LastGenOutput>FixedDeposit.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FixedDeposit.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FixedDeposit.edmx</DependentUpon>
+      <LastGenOutput>FixedDeposit1.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\User.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>User.edmx</DependentUpon>
@@ -371,6 +400,13 @@
     </EntityDeploy>
     <Content Include="Models\Employee.edmx.diagram">
       <DependentUpon>Employee.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\FixedDeposit.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FixedDeposit.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FixedDeposit.edmx.diagram">
+      <DependentUpon>FixedDeposit.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
@@ -464,6 +500,11 @@
     <Content Include="Views\Home\GratuityView.cshtml" />
     <Content Include="Views\Home\InsuranceView.cshtml" />
     <Content Include="Views\Home\DeletedEmployeesView.cshtml" />
+    <Content Include="Views\FixedDeposits\Create.cshtml" />
+    <Content Include="Views\FixedDeposits\Delete.cshtml" />
+    <Content Include="Views\FixedDeposits\Details.cshtml" />
+    <Content Include="Views\FixedDeposits\Edit.cshtml" />
+    <Content Include="Views\FixedDeposits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
