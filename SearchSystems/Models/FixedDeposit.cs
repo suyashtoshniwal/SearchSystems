@@ -23,9 +23,13 @@ namespace SearchSystems.Models
         [Key, Column(Order = 1)]
         public string BankName { get; set; }
         public string FDNumber { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfPurchase { get; set; }
         public Nullable<decimal> Amount { get; set; }
         public Nullable<decimal> RateOfInterest { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> MaturityDate { get; set; }
         public Nullable<decimal> MaturityAmount { get; set; }
         public Nullable<bool> Status { get; set; }

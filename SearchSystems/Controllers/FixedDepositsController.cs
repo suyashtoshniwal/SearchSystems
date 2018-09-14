@@ -12,7 +12,7 @@ namespace SearchSystems.Controllers
 {
     public class FixedDepositsController : Controller
     {
-        private SEARCHSYSTEMSEntities4 db = new SEARCHSYSTEMSEntities4();
+        private Entities db = new Entities();
 
         // GET: FixedDeposits
         public ActionResult Index()
