@@ -26,12 +26,12 @@ namespace SearchSystems.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DateOfPurchase { get; set; }
-        public Nullable<decimal> Amount { get; set; }
-        public Nullable<decimal> RateOfInterest { get; set; }
+        public string Amount { get; set; }
+        public string RateOfInterest { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> MaturityDate { get; set; }
-        public Nullable<decimal> MaturityAmount { get; set; }
+        public string MaturityAmount { get; set; }
         public Nullable<bool> Status { get; set; }
     }
 }
