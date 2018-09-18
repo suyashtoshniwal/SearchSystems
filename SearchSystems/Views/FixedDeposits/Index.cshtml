@@ -65,9 +65,9 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { serialnumber = item.SerialNumber, bankname = item.BankName }) |
+            @Html.ActionLink("Details", "Details", new { serialnumber = item.SerialNumber, bankname = item.BankName }) |
+            @Html.ActionLink("Delete", "Delete", new { serialnumber = item.SerialNumber, bankname = item.BankName })
         </td>
     </tr>
 }

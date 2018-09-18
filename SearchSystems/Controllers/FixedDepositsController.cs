@@ -21,13 +21,13 @@ namespace SearchSystems.Controllers
         }
 
         // GET: FixedDeposits/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? serialnumber, string bankName)
         {
-            if (id == null)
+            if (serialnumber == null || String.IsNullOrEmpty(bankName))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FixedDeposit fixedDeposit = db.FixedDeposits.Find(id);
+            FixedDeposit fixedDeposit = db.FixedDeposits.Find(serialnumber, bankName);
             if (fixedDeposit == null)
             {
                 return HttpNotFound();
@@ -59,13 +59,13 @@ namespace SearchSystems.Controllers
         }
 
         // GET: FixedDeposits/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? serialnumber, string bankName)
         {
-            if (id == null)
+            if (serialnumber == null || String.IsNullOrEmpty(bankName))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FixedDeposit fixedDeposit = db.FixedDeposits.Find(id);
+            FixedDeposit fixedDeposit = db.FixedDeposits.Find(serialnumber, bankName);
             if (fixedDeposit == null)
             {
                 return HttpNotFound();
@@ -82,21 +82,45 @@ namespace SearchSystems.Controllers
         {
             if (ModelState.IsValid)
             {
+                int oSerialNumber = Convert.ToInt32(Request["SerialNumber"]);
+                string oBankName = Request["BankName"].ToString();
+
+                var services = db.FixedDeposits.Where(a => a.SerialNumber == oSerialNumber)
+                                           .Where(a => a.BankName == oBankName);
+                                          
+
+                foreach (var s in services)
+                {
+                    db.FixedDeposits.Remove(s);
+                }
+
+                db.FixedDeposits.Add(fixedDeposit);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("Index");
+                }
                 db.Entry(fixedDeposit).State = EntityState.Modified;
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //ViewBag.DayID = new SelectList(db.Days, "DayID", "Day", schedule.DayID);
+            //ViewBag.LanguageID = new SelectList(db.Languages, "LanguageID", "Language", schedule.LanguageID);
+            //ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "Location", schedule.LocationID);
+            //ViewBag.TimeID = new SelectList(db.Times, "TimeID", "Time", schedule.TimeID);
             return View(fixedDeposit);
         }
 
         // GET: FixedDeposits/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? serialnumber, string bankName)
         {
-            if (id == null)
+            if (serialnumber == null || String.IsNullOrEmpty(bankName))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            FixedDeposit fixedDeposit = db.FixedDeposits.Find(id);
+            FixedDeposit fixedDeposit = db.FixedDeposits.Find(serialnumber, bankName);
             if (fixedDeposit == null)
             {
                 return HttpNotFound();
@@ -107,9 +131,9 @@ namespace SearchSystems.Controllers
         // POST: FixedDeposits/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? serialnumber, string bankName)
         {
-            FixedDeposit fixedDeposit = db.FixedDeposits.Find(id);
+            FixedDeposit fixedDeposit = db.FixedDeposits.Find(serialnumber, bankName);
             db.FixedDeposits.Remove(fixedDeposit);
             db.SaveChanges();
             return RedirectToAction("Index");
