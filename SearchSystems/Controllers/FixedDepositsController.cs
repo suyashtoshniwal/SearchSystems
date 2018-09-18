@@ -15,8 +15,15 @@ namespace SearchSystems.Controllers
         private Entities db = new Entities();
 
         // GET: FixedDeposits
-        public ActionResult Index()
+        public ActionResult Index(bool fdView = false)
         {
+            if (fdView)
+            {
+                DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
+                IQueryable<FixedDeposit> fdAccounts = db.FixedDeposits.Where(e => e.MaturityDate <= testLessThanDate && e.Status == true);
+                return View("FDView", fdAccounts.ToList());
+            }
+            
             return View(db.FixedDeposits.ToList());
         }
 
@@ -139,6 +146,30 @@ namespace SearchSystems.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult RenewFD([Bind(Include = "SerialNumber,BankName,DateOfPurchase,Amount,RateOfInterest,MaturityDate,MaturityAmount,Status")] IList<FixedDeposit> fdList)
+        {
+            var updatedFDList = new List<FixedDeposit>();
+
+            foreach (FixedDeposit e in fdList)
+            {
+                FixedDeposit fd = db.FixedDeposits.Find(e.SerialNumber, e.BankName);
+
+                fd.DateOfPurchase = e.DateOfPurchase;
+                fd.Amount = e.Amount;
+                fd.RateOfInterest = e.RateOfInterest;
+                fd.MaturityDate = e.MaturityDate;
+                fd.MaturityAmount = e.MaturityAmount;
+
+                fd.Status = e.Status;
+
+                updatedFDList.Add(e);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { fdview = true });
+
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

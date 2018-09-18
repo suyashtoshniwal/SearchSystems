@@ -13,6 +13,7 @@ namespace SearchSystems.Controllers
     public class DashboardController : Controller
     {
         private SEARCHSYSTEMSEntities4 db = new SEARCHSYSTEMSEntities4();
+        private Entities fdDb = new Entities();
 
         [Authorize(Roles = "admin")]
         public JsonResult GetEmployeeJoiningData()
@@ -54,6 +55,9 @@ namespace SearchSystems.Controllers
 
             DateTime testLessThanDate1 = DateTime.Now.Add(new TimeSpan(120, 0, 0, 0));
             employeeDashboardViewModel.TotalEmpGratuityPending = searchedEmployees.Where(e => e.GratuityStatus == false && e.GratuityStartDate <= testLessThanDate1).Count();
+
+            employeeDashboardViewModel.TotalFDMaturing = fdDb.FixedDeposits.Where(e => e.MaturityDate <= testLessThanDate && e.Status == true).Count();
+
             // Get employees for whom PF needs to be started
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));

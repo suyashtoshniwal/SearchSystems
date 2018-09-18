@@ -129,6 +129,13 @@
                 @Html.ActionLink("Medical Insurance :", "Index", "home", new { insuranceview = true }, null)
             </td>
         </tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    @Html.ActionLink("Fixed Deposit :", "Index", "FixedDeposits", new { fdview = true }, null)@Html.Label(Model.TotalFDMaturing.ToString())
+                </div>
+            </td>
+        </tr>
     </table>
     <hr />
 

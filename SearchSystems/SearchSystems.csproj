@@ -505,6 +505,7 @@
     <Content Include="Views\FixedDeposits\Details.cshtml" />
     <Content Include="Views\FixedDeposits\Edit.cshtml" />
     <Content Include="Views\FixedDeposits\Index.cshtml" />
+    <Content Include="Views\FixedDeposits\FDView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
