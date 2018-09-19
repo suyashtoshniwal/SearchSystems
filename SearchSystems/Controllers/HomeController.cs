@@ -308,11 +308,46 @@ namespace SearchSystems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,IsActive,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,Salary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,VehicleNumber")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,Salary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,VehicleNumber")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
+                Employee existedEmployee = db.Employees.Find(employee.Id);
+
+                existedEmployee.DrivingLicenseNumber = employee.DrivingLicenseNumber;
+                existedEmployee.FirstName = employee.FirstName;
+                existedEmployee.LastName = employee.LastName;
+                existedEmployee.Address = employee.Address;
+                existedEmployee.Gender = employee.Gender;
+                existedEmployee.DOB = employee.DOB;
+                existedEmployee.BloodGroup = employee.BloodGroup;
+                existedEmployee.MobileNumber = employee.MobileNumber;
+                existedEmployee.WhatsAppNumber = employee.WhatsAppNumber;
+                existedEmployee.EmailAddress = employee.EmailAddress;
+                existedEmployee.OfficeEmailAddress = employee.OfficeEmailAddress;
+                existedEmployee.City = employee.City;
+                existedEmployee.District = employee.District;
+                existedEmployee.State = employee.State;
+                existedEmployee.Country = employee.Country;
+                existedEmployee.PinCode = employee.PinCode;
+                existedEmployee.Salary = employee.Salary;
+                existedEmployee.Designation = employee.Designation;
+                existedEmployee.DateOfJoining = employee.DateOfJoining;
+
+                existedEmployee.ProbationPeriod = employee.ProbationPeriod;
+                existedEmployee.PFAccountNumber = employee.PFAccountNumber;
+                existedEmployee.PFUANNumber = employee.PFUANNumber;
+                existedEmployee.GratuityNumber = employee.GratuityNumber;
+                existedEmployee.MedicalInsuranceNumber = employee.MedicalInsuranceNumber;
+                existedEmployee.InsuranceExpiryDate = employee.InsuranceExpiryDate;
+                existedEmployee.InsuranceRenewalDate = employee.InsuranceRenewalDate;
+                existedEmployee.BankAccountNumber = employee.BankAccountNumber;
+                existedEmployee.BankBranchName = employee.BankBranchName;
+                existedEmployee.BankIFSCCode = employee.BankIFSCCode;
+                existedEmployee.BankName = employee.BankName;
+                existedEmployee.AadharNumber = employee.AadharNumber;
+                existedEmployee.PFUANNumber = employee.PFUANNumber;
+                //db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -81,13 +81,13 @@ namespace SearchSystems.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> LastWorkingDay { get; set; }
 
-        public Nullable<int> BasicSalary { get; set; }
-        public Nullable<int> PFAmount { get; set; }
-        public Nullable<int> GratuityAmount { get; set; }
-        public Nullable<int> InsuranceAmount { get; set; }
-        public Nullable<int> MessCharges { get; set; }
-        public Nullable<int> AccomodationCharges { get; set; }
-        public Nullable<int> OtherBenefits { get; set; }
+        public int BasicSalary { get; set; }
+        public int PFAmount { get; set; }
+        public int GratuityAmount { get; set; }
+        public int InsuranceAmount { get; set; }
+        public int MessCharges { get; set; }
+        public int AccomodationCharges { get; set; }
+        public int OtherBenefits { get; set; }
 
         public virtual Department Department { get; set; }
     }
