@@ -21,7 +21,8 @@ namespace SearchSystems.Controllers
         public ActionResult Index(string search, string previousSortOrder,
                                   string previousSortTerm, string CurrentSortTerm,
                                   int? page, bool PFView = false, bool gratuityView = false,
-                                  bool insuranceView = false, bool deletedEmployeesView = false)
+                                  bool insuranceView = false, bool deletedEmployeesView = false,
+                                  bool salaryView = false)
         {
 
             ViewBag.Search = search;
@@ -214,6 +215,10 @@ namespace SearchSystems.Controllers
             {
                 return View("DeletedEmployeesView", sortedmployees.ToList());
             }
+            if (salaryView)
+            {
+                return View("SalaryView", sortedmployees.ToList());
+            }
             return View(sortedmployees);
         }
         // GET: Employees
@@ -391,6 +396,30 @@ namespace SearchSystems.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index", new { insuranceview = true });
+
+        }
+
+        [HttpPost]
+        public ActionResult SaveSalary([Bind(Include = "Id,BasicSalary,PFAmount,GratuityAmount,InsuranceAmount,MessCharges,AccomodationCharges,OtherBenefits")] IList<Employee> employeeList)
+        {
+            var updatedEmployeeList = new List<Employee>();
+
+            foreach (Employee e in employeeList)
+            {
+                Employee existedEmployee = db.Employees.Find(e.Id);
+
+                existedEmployee.BasicSalary = e.BasicSalary;
+                existedEmployee.PFAmount = e.PFAmount;
+                existedEmployee.GratuityAmount = e.GratuityAmount;
+                existedEmployee.InsuranceAmount = e.InsuranceAmount;
+                existedEmployee.MessCharges = e.MessCharges;
+                existedEmployee.AccomodationCharges = e.AccomodationCharges;
+                existedEmployee.OtherBenefits = e.OtherBenefits;
+                updatedEmployeeList.Add(e);
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { salaryview = true });
 
         }
         // GET: Employees/Delete/5

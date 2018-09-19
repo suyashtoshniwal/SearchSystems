@@ -503,6 +503,9 @@
     <Content Include="Views\FixedDeposits\Edit.cshtml" />
     <Content Include="Views\FixedDeposits\Index.cshtml" />
     <Content Include="Views\FixedDeposits\FDView.cshtml" />
+    <Content Include="Views\Home\SalaryView.cshtml" />
+    <Content Include="Views\Salary\Create.cshtml" />
+    <Content Include="Views\Salary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -551,7 +554,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52670</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52691/</IISUrl>
+          <IISUrl>http://localhost:52692/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,0 +1,327 @@
+﻿@model IEnumerable<SearchSystems.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BloodGroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobileNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhatsAppNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeEmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PinCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfJoining)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProbationPeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PFStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PFAccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PFUANNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GratuityNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GratuityStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalInsuranceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsuranceExpiryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAccountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankBranchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankIFSCCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AadharNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PANNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DrivingLicenseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VehicleNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PFStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GratuityStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsuranceRenewalDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearsOfExperince)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAccomodationProvided)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsuranceBankName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastWorkingDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BasicSalary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PFAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GratuityAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsuranceAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MessCharges)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccomodationCharges)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherBenefits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BloodGroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobileNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WhatsAppNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficeEmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.District)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PinCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfJoining)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProbationPeriod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PFStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PFAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PFUANNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GratuityNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GratuityStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicalInsuranceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsuranceExpiryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAccountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankBranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankIFSCCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AadharNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PANNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DrivingLicenseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PFStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GratuityStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsuranceRenewalDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearsOfExperince)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAccomodationProvided)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsuranceBankName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastWorkingDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BasicSalary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PFAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GratuityAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsuranceAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MessCharges)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccomodationCharges)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherBenefits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

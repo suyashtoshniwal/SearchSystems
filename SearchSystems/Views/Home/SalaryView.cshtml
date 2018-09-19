@@ -1,0 +1,113 @@
+﻿@model IList<SearchSystems.Models.Employee>
+
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Employee List";
+    string currentSearch = ViewBag.Search;
+    string currentSortTerm = ViewBag.PreviousSortTerm;
+
+}
+
+<h2>Salary Details</h2>
+
+@using (Html.BeginForm("SaveSalary", "Home", FormMethod.Post))
+{
+    @Html.TextBox("Search")
+
+    <input type="submit" name="submit" value="Search" formaction="Index" />
+
+    <input type="hidden" name="salaryView" value="true" />
+
+    <p></p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Employee Id", "Index",
+                             new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
+            </th>
+            <th>
+                @Html.ActionLink("First Name", "Index",
+                             new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
+            </th>
+            <th>
+                @Html.ActionLink("Last Name", "Index",
+                                        new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
+            </th>
+            <th>
+                Total Salary
+            </th>
+            <th>
+                Basic Salary
+            </th>
+            <th>
+                PF Amount
+            </th>
+            <th>
+                Gratuity Amount
+            </th>
+            <th>
+                Insurance Amount
+            </th>
+            <th>
+                Mess Charges
+            </th>
+            <th>
+                Accomodation Charges
+            </th>
+            <th>
+                Other Benefits
+            </th>
+            <th></th>
+        </tr>
+
+        @for (var i = 0; i < Model.Count; i++)
+        {
+        <tr>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].Id, new { @style = "border: 0px" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].Salary)
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].BasicSalary, new { style = "width: 70px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].PFAmount, new { style = "width: 70px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].GratuityAmount, new { style = "width: 70px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].InsuranceAmount, new { style = "width: 70px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].MessCharges, new { style = "width: 70px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].AccomodationCharges, new { style = "width: 70px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].OtherBenefits, new { style = "width: 70px;" })
+            </td>
+            @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>*@
+        </tr>
+        }
+        <tr>
+            <td colspan="10">
+                <input type="submit" value="Submit" style="float:right ; class:noprint" />
+            </td>
+        </tr>
+    </table>
+}
