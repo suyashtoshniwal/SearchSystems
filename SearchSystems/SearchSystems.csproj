@@ -247,9 +247,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FixedDeposit.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SalaryDistribution.cs">
-      <DependentUpon>Employee.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -36,7 +36,7 @@ namespace SearchSystems.Models
         public string Country { get; set; }
         public string PinCode { get; set; }
         public string Designation { get; set; }
-        public Nullable<Int32> Salary { get; set; }
+        public int Salary { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -80,8 +80,15 @@ namespace SearchSystems.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> LastWorkingDay { get; set; }
-    
+
+        public Nullable<int> BasicSalary { get; set; }
+        public Nullable<int> PFAmount { get; set; }
+        public Nullable<int> GratuityAmount { get; set; }
+        public Nullable<int> InsuranceAmount { get; set; }
+        public Nullable<int> MessCharges { get; set; }
+        public Nullable<int> AccomodationCharges { get; set; }
+        public Nullable<int> OtherBenefits { get; set; }
+
         public virtual Department Department { get; set; }
-        public virtual SalaryDistribution SalaryDistribution { get; set; }
     }
 }
