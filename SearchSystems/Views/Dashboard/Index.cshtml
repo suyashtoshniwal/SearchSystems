@@ -126,7 +126,9 @@
         </tr>
         <tr>
             <td>
-                @Html.ActionLink("Medical Insurance :", "Index", "home", new { insuranceview = true }, null)
+                <div class="form-group">
+                    @Html.ActionLink("Medical Insurance", "Index", "home", new { insuranceview = true }, null)
+                </div>
             </td>
         </tr>
         <tr>
@@ -260,31 +262,33 @@
 
 
     </div>
-  
+
     <hr />
-    <h4 style="color:#b24735">@Html.Label("Blood Groupwise Distribution")</h4>
-    <table border="1" class="text-center" cellpadding="5">
-        <tr style="color:#b24735">
-            <th>Blood Group</th>
-            <th>Total Employees</th>
-        </tr>
-        @foreach (var item in Model.BloodGroups)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Key)
-                </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Value)
-            </td>
-        </tr>
+    <div class="container">
+    <div style="float:left;padding: 10px; margin-left: 15px;">
+        <h4 style="color:#b24735">@Html.Label("Blood Groupwise Distribution")</h4>
+        <table border="1" class="text-center" cellpadding="5">
+                <tr style="color:#b24735">
+                    <th>Blood Group</th>
+                    <th>Total Employees</th>
+                </tr>
+                @foreach (var item in Model.BloodGroups)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Key)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Value)
+                        </td>
+                    </tr>
 
-        }
+                }
 
-    </table>
-
-
-    <table border="1" class="text-center" cellpadding="5"></table>
-    @*<div id="employeeColumnChart"></div>*@
-}
+            </table>
+        </div>
+        </div>
+            <table border="1" class="text-center" cellpadding="5"></table>
+            @*<div id="employeeColumnChart"></div>*@
+            }
 
