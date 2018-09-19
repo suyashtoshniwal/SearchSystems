@@ -10,31 +10,31 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" />
           <Property Name="DepartmentId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
           <Property Name="DOB" Type="date" />
           <Property Name="BloodGroup" Type="varchar" MaxLength="50" />
           <Property Name="MobileNumber" Type="varchar" MaxLength="10" />
           <Property Name="WhatsAppNumber" Type="varchar" MaxLength="10" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
           <Property Name="OfficeEmailAddress" Type="varchar" MaxLength="50" />
-          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="District" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="50" />
           <Property Name="Country" Type="varchar" MaxLength="50" />
           <Property Name="PinCode" Type="varchar" MaxLength="10" />
           <Property Name="Designation" Type="varchar" MaxLength="50" />
-          <Property Name="Salary" Type="int" />
+          <Property Name="Salary" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="DateOfJoining" Type="date" />
           <Property Name="ProbationPeriod" Type="int" />
           <Property Name="PFAccountNumber" Type="varchar" MaxLength="50" />
@@ -58,23 +58,15 @@
           <Property Name="YearsOfExperince" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="IsAccomodationProvided" Type="varchar" MaxLength="10" />
           <Property Name="InsuranceBankName" Type="varchar" MaxLength="50" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="LastWorkingDay" Type="date" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="SalaryDistribution">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Salary" Type="int" />
+          <Property Name="BasicSalary" Type="int" />
           <Property Name="PFAmount" Type="int" />
           <Property Name="GratuityAmount" Type="int" />
           <Property Name="InsuranceAmount" Type="int" />
           <Property Name="MessCharges" Type="int" />
           <Property Name="AccomodationCharges" Type="int" />
-          <Property Name="GrandSalary" Type="int" />
+          <Property Name="OtherBenefits" Type="int" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -88,40 +80,12 @@ warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not hav
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SalaryDistribution_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="SalaryDistribution" Type="Self.SalaryDistribution" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalaryDistribution">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SEARCHSYSTEMSModelStoreContainer">
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SalaryDistribution" EntityType="Self.SalaryDistribution" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SalaryDistribution].[Id] AS [Id], 
-    [SalaryDistribution].[Salary] AS [Salary], 
-    [SalaryDistribution].[PFAmount] AS [PFAmount], 
-    [SalaryDistribution].[GratuityAmount] AS [GratuityAmount], 
-    [SalaryDistribution].[InsuranceAmount] AS [InsuranceAmount], 
-    [SalaryDistribution].[MessCharges] AS [MessCharges], 
-    [SalaryDistribution].[AccomodationCharges] AS [AccomodationCharges], 
-    [SalaryDistribution].[GrandSalary] AS [GrandSalary]
-    FROM [dbo].[SalaryDistribution] AS [SalaryDistribution]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Department_Department" Association="Self.FK_Department_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="Department1" EntitySet="Department" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalaryDistribution_Employee" Association="Self.FK_SalaryDistribution_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="SalaryDistribution" EntitySet="SalaryDistribution" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -133,7 +97,7 @@ warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not hav
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Department1" Relationship="Self.FK_Department_Department" FromRole="Department" ToRole="Department1" />
           <NavigationProperty Name="Department2" Relationship="Self.FK_Department_Department" FromRole="Department1" ToRole="Department" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
@@ -143,17 +107,17 @@ warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not hav
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DepartmentId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DOB" Type="DateTime" Precision="0" />
           <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="WhatsAppNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OfficeEmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -185,9 +149,15 @@ warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not hav
           <Property Name="YearsOfExperince" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IsAccomodationProvided" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="InsuranceBankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="LastWorkingDay" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="SalaryDistribution" Relationship="SEARCHSYSTEMSModel.FK_SalaryDistribution_Employee" FromRole="Employee" ToRole="SalaryDistribution" />
+          <Property Name="BasicSalary" Type="Int32" />
+          <Property Name="PFAmount" Type="Int32" />
+          <Property Name="GratuityAmount" Type="Int32" />
+          <Property Name="InsuranceAmount" Type="Int32" />
+          <Property Name="MessCharges" Type="Int32" />
+          <Property Name="AccomodationCharges" Type="Int32" />
+          <Property Name="OtherBenefits" Type="Int32" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -224,38 +194,7 @@ warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not hav
             <End Role="Department" EntitySet="Departments" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <EntitySet Name="SalaryDistributions" EntityType="SEARCHSYSTEMSModel.SalaryDistribution" />
-          <AssociationSet Name="FK_SalaryDistribution_Employee" Association="SEARCHSYSTEMSModel.FK_SalaryDistribution_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="SalaryDistribution" EntitySet="SalaryDistributions" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="SalaryDistribution">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Salary" Type="Int32" />
-          <Property Name="PFAmount" Type="Int32" />
-          <Property Name="GratuityAmount" Type="Int32" />
-          <Property Name="InsuranceAmount" Type="Int32" />
-          <Property Name="MessCharges" Type="Int32" />
-          <Property Name="AccomodationCharges" Type="Int32" />
-          <Property Name="GrandSalary" Type="Int32" />
-          <NavigationProperty Name="Employee" Relationship="SEARCHSYSTEMSModel.FK_SalaryDistribution_Employee" FromRole="SalaryDistribution" ToRole="Employee" />
-        </EntityType>
-        <Association Name="FK_SalaryDistribution_Employee">
-          <End Type="SEARCHSYSTEMSModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="SEARCHSYSTEMSModel.SalaryDistribution" Role="SalaryDistribution" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SalaryDistribution">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -273,6 +212,13 @@ warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not hav
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="SEARCHSYSTEMSModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="OtherBenefits" ColumnName="OtherBenefits" />
+                <ScalarProperty Name="AccomodationCharges" ColumnName="AccomodationCharges" />
+                <ScalarProperty Name="MessCharges" ColumnName="MessCharges" />
+                <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
+                <ScalarProperty Name="GratuityAmount" ColumnName="GratuityAmount" />
+                <ScalarProperty Name="PFAmount" ColumnName="PFAmount" />
+                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
                 <ScalarProperty Name="LastWorkingDay" ColumnName="LastWorkingDay" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="InsuranceBankName" ColumnName="InsuranceBankName" />
@@ -317,20 +263,6 @@ warning 6002: The table/view 'SEARCHSYSTEMS.dbo.SalaryDistribution' does not hav
                 <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
                 <ScalarProperty Name="DrivingLicenseNumber" ColumnName="DrivingLicenseNumber" />
                 <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalaryDistributions">
-            <EntityTypeMapping TypeName="SEARCHSYSTEMSModel.SalaryDistribution">
-              <MappingFragment StoreEntitySet="SalaryDistribution">
-                <ScalarProperty Name="GrandSalary" ColumnName="GrandSalary" />
-                <ScalarProperty Name="AccomodationCharges" ColumnName="AccomodationCharges" />
-                <ScalarProperty Name="MessCharges" ColumnName="MessCharges" />
-                <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
-                <ScalarProperty Name="GratuityAmount" ColumnName="GratuityAmount" />
-                <ScalarProperty Name="PFAmount" ColumnName="PFAmount" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
