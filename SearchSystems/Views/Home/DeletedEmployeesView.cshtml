@@ -24,15 +24,15 @@
         <tr>
             <th>
                 @Html.ActionLink("Employee Id", "Index",
-                                      new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+                                      new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, deletedEmployeesView = true })
             </th>
             <th>
                 @Html.ActionLink("First Name", "Index",
-                                      new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+                                      new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, deletedEmployeesView = true })
             </th>
             <th>
                 @Html.ActionLink("Last Name", "Index",
-                                                 new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+                                                 new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, deletedEmployeesView = true })
             </th>
             <th>
                 Department
