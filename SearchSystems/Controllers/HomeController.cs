@@ -259,6 +259,7 @@ namespace SearchSystems.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.IsActive = true;
                 db.Employees.Add(employee);
                 try
                 {
