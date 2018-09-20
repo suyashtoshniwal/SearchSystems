@@ -265,9 +265,9 @@
 
     <hr />
     <div class="container">
-    <div style="float:left;padding: 10px; margin-left: 15px;">
-        <h4 style="color:#b24735">@Html.Label("Blood Groupwise Distribution")</h4>
-        <table border="1" class="text-center" cellpadding="5">
+        <div style="float:left;padding: 10px; margin-left: 15px;">
+            <h4 style="color:#b24735">@Html.Label("Blood Groupwise Distribution")</h4>
+            <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
                     <th>Blood Group</th>
                     <th>Total Employees</th>
@@ -287,8 +287,41 @@
 
             </table>
         </div>
+    </div>
+
+    <div class="container">
+        <div style="float:left;padding: 10px; margin-left: 15px;">
+            <h4 style="color:#b24735">@Html.Label("Upcoming Birthdays")</h4>
+            <table border="1" class="text-center" cellpadding="5">
+                @if (Model.EmployeeBirthdays.Count() > 0)
+    {
+            <tr style="color:#b24735">
+                <th>Name</th>
+                <th>Birthday</th>
+            </tr>
+            
+    foreach (var item in Model.EmployeeBirthdays)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value.Value)
+                </td>
+            </tr>
+
+}
+}
+else
+{ @Html.Label("No Birthdays in the coming month!")
+
+}
+
+            </table>
         </div>
-            <table border="1" class="text-center" cellpadding="5"></table>
-            @*<div id="employeeColumnChart"></div>*@
-            }
+    </div>
+    <table border="1" class="text-center" cellpadding="5"></table>
+    @*<div id="employeeColumnChart"></div>*@
+}
 

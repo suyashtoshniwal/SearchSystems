@@ -30,6 +30,8 @@ namespace SearchSystems.ViewModels
 
         public List<object> ChartData = new List<object>();
 
+        public IDictionary<string, DateTime?> EmployeeBirthdays = new Dictionary<string, DateTime?>();
+
         public List<DepartmentDistribution> DepartmentDistributions = new List<DepartmentDistribution>();
 
     }

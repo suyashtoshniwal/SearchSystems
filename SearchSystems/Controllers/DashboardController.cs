@@ -131,6 +131,11 @@ namespace SearchSystems.Controllers
 
             employeeDashboardViewModel.BloodGroups = bloodGroups;
 
+            var dateMonthfromToday = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
+            var employeeBirthdays = db.Employees.Where(employee => employee.DOB.Value.Month >= DateTime.Today.Month && employee.DOB.Value.Day >= DateTime.Today.Day && employee.DOB.Value.Month <= dateMonthfromToday.Month && employee.DOB.Value.Day <= dateMonthfromToday.Day)
+                .ToDictionary(ed => String.Concat(ed.FirstName," ", ed.LastName), ed => ed.DOB);
+            employeeDashboardViewModel.EmployeeBirthdays = employeeBirthdays;
+
             employeeDashboardViewModel.DepartmentDistributions = query.ToList();
 
             return View(employeeDashboardViewModel);
