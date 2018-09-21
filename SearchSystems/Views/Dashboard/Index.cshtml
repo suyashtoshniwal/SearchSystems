@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Dashboard</h2>
+
 @using (Html.BeginForm())
 {
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -76,72 +76,75 @@
         google.load('visualization', '1', { packages: ['corechart'] });
     </script>
 
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+        <div class="col-md-1"></div>
+    </div>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.Label("Total Employees : ")@Html.ActionLink(Model.TotalEmployeesNumber.ToString(), "Index", "home")
-            </th>
-            <th>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TotalMaleEmployeesNumber, "Male:", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DisplayFor(model => model.TotalMaleEmployeesNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TotalMaleEmployeesNumber, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </th>
-            <th>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TotalFemaleEmployeesNumber, "Female:", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DisplayFor(model => model.TotalFemaleEmployeesNumber, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TotalFemaleEmployeesNumber, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </th>
-        </tr>
-        <tr>
-            <th>
-                @Html.Label("Past Employees : ")@Html.ActionLink(Model.PastEmployees.ToString(), "Index", "home", new { deletedEmployeesView = true }, null)
-            </th>
-        </tr>
-    </table>
+    <h2 style="color:lightseagreen">@Html.Label("SEARCH Overview")</h2>
     <hr />
-    <h4 style="color:orangered">@Html.Label("Pending Dues : Need to take Action")</h4>
-    <table>
-        <tr>
-            <td>
-                <div class="form-group">
-                    @Html.ActionLink("Provident Fund (PF) :", "Index", "home", new { pfview = true }, null)@Html.Label(Model.TotalEmpNumberPFTostartFor.ToString())
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="form-group">
-                    @Html.ActionLink("Gratuity :", "Index", "home", new { gratuityview = true }, null)@Html.Label(Model.TotalEmpGratuityPending.ToString())
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="form-group">
-                    @Html.ActionLink("Medical Insurance", "Index", "home", new { insuranceview = true }, null)
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="form-group">
-                    @Html.ActionLink("Fixed Deposit :", "Index", "FixedDeposits", new { fdview = true }, null)@Html.Label(Model.TotalFDMaturing.ToString())
-                </div>
-            </td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Total Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmployeesNumber.ToString(), "Index", "home")
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Male : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalMaleEmployeesNumber.ToString(), "Index", "home")
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Female : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFemaleEmployeesNumber.ToString(), "Index", "home")
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Past Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.PastEmployees.ToString(), "Index", "home", new { deletedEmployeesView = true }, null)
+            </h3>
+        </div>
+    </div>
+    <hr/>
+    <h2 style="color:lightseagreen">@Html.Label("Pending Dues : Need to take Action")</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Provident Fund (PF) : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpNumberPFTostartFor.ToString(),"Index","home",new { pfview =true},null)
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Gratuity : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpGratuityPending.ToString(), "Index", "home", new { gratuityview = true }, null)
+            </h3>
+        </div>
+        <div class="col-md-4">
+            <h3>
+                @Html.ActionLink("Medical Insurance", "Index", "home", new { insuranceview = true }, new { style = "color:black;font-weight:bold" })
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Fixed Deposites : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFDMaturing.ToString(), "Index", "FixedDeposits", new { fdview = true }, null)
+            </h3>
+        </div>
+    </div>
     <hr />
-
-
     <div class="container">
         <div style="float:left;padding: 10px; margin-left: 15px; background-color:">
             <h4 style="color:#b24735">@Html.Label("Employee Service Distribution")</h4>
