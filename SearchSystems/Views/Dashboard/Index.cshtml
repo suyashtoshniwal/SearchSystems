@@ -123,7 +123,7 @@
     <div class="row">
         <div class="col-md-4">
             <h3>
-                @Html.Label("Provident Fund (PF) : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpNumberPFTostartFor.ToString(),"Index","home",new { pfview =true},null)
+                @Html.Label("Provident Fund (PF) : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpNumberPFTostartFor.ToString(), "Index", "home", new { pfview = true }, null)
             </h3>
         </div>
         <div class="col-md-4">
@@ -145,8 +145,9 @@
         </div>
     </div>
     <hr />
-    <div class="container">
-        <div style="float:left;padding: 10px; margin-left: 15px; background-color:">
+
+    <div class="row">
+        <div class="col-md-4">
             <h4 style="color:#b24735">@Html.Label("Employee Service Distribution")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
@@ -195,9 +196,7 @@
                 </tr>
             </table>
         </div>
-
-        <div style="float:left;padding: 10px; margin-left: 60px">
-
+        <div class="col-md-4">
             <h4 style="color:#b24735">@Html.Label("Departmentwise Distribution")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
@@ -208,24 +207,23 @@
 
                 @foreach (var item in Model.DepartmentDistributions)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TotalEmployees)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TotalSalary)
-                        </td>
-                    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalEmployees)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalSalary)
+                </td>
+            </tr>
 
                 }
 
             </table>
         </div>
-
-        <div style="float:left;padding: 10px; margin-left: 60px">
+        <div class="col-md-4">
             <h4 style="color:#b24735">@Html.Label("Distribution of Employees Joined")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
@@ -263,12 +261,11 @@
             </table>
         </div>
 
-
     </div>
-
     <hr />
-    <div class="container">
-        <div style="float:left;padding: 10px; margin-left: 15px;">
+
+    <div class="row">
+        <div class="col-md-4">
             <h4 style="color:#b24735">@Html.Label("Blood Groupwise Distribution")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:#b24735">
@@ -277,54 +274,51 @@
                 </tr>
                 @foreach (var item in Model.BloodGroups)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Key)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Value)
-                        </td>
-                    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+            </tr>
 
                 }
 
             </table>
         </div>
-
-
-        <div style="float:left;padding: 10px; margin-left: 15px;">
-            <h4 style="color:#b24735">@Html.Label("Upcoming Birthdays")</h4>
-            <table border="1" class="text-center" cellpadding="5">
-                @if (Model.EmployeeBirthdays.Count() > 0)
-                {
-                    <tr style="color:#b24735">
-                        <th>Name</th>
-                        <th>Birthday</th>
-                    </tr>
-
-                    foreach (var item in Model.EmployeeBirthdays)
+        
+            <div class="col-md-4">
+                <h4 style="color:#b24735">@Html.Label("Upcoming Birthdays")</h4>
+                <table border="1" class="text-center" cellpadding="5">
+                    @if (Model.EmployeeBirthdays.Count() > 0)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Key)
-                            </td>
-                            <td>
-                                @Html.TextBox("birthday", item.Value.Value.ToShortDateString(), new { @readonly = "readonly", @style = "border: 0px" })
-                            </td>
-                        </tr>
+            <tr style="color:#b24735">
+                <th>Name</th>
+                <th>Birthday</th>
+            </tr>
+
+                        foreach (var item in Model.EmployeeBirthdays)
+                        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Key)
+                </td>
+                <td>
+                    @Html.TextBox("birthday", item.Value.Value.ToShortDateString(), new { @readonly = "readonly", @style = "border: 0px" })
+                </td>
+            </tr>
+
+                        }
+                    }
+                    else
+                    { @Html.Label("No Birthdays in the coming month!")
 
                     }
-                }
-                else
-                { @Html.Label("No Birthdays in the coming month!")
 
-            }
-
-            </table>
+                </table>
+            </div>
         </div>
-    </div>
-
-    <table border="1" class="text-center" cellpadding="5"></table>
-    @*<div id="employeeColumnChart"></div>*@
 }
+
 
