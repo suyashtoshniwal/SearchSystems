@@ -25,6 +25,9 @@ namespace SearchSystems.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DOB { get; set; }
         public string BloodGroup { get; set; }
+       
+        [Required(ErrorMessage = "Mobile Number is required.")]
+        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile Number.")]
         public string MobileNumber { get; set; }
         public string WhatsAppNumber { get; set; }
         public string EmailAddress { get; set; }
