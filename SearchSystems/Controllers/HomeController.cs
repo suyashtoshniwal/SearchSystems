@@ -255,7 +255,7 @@ namespace SearchSystems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,Salary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,VehicleNumber")] Employee employee)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,TotalSalary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,SalaryAppliedDate,MonthlyInsuranceAmount,MonthlyHousingAllowance")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -309,10 +309,11 @@ namespace SearchSystems.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,Salary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,VehicleNumber")] Employee employee)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Address,DepartmentId,Gender,DOB,BloodGroup,MobileNumber,LandlineNumber,WhatsAppNumber,EmailAddress,OfficeEmailAddress,City,District,State,Country,PinCode,TotalSalary,Designation,DateOfJoining,ProbationPeriod,PFAccountNumber,PFUANNumber,GratuityNumber,MedicalInsuranceNumber,InsuranceExpiryDate,InsuranceRenewalDate,BankAccountNumber,BankName,BankBranchName,BankIFSCCode,AadharNumber,PANNumber,DrivingLicenseNumber,SalaryAppliedDate,EmployerPFAmount,EmpolyeePFAmount,MonthlyInsuranceAmount,MonthlyHousingAllowance,EmployeePFPercentage")] Employee employee)
         {
             if (ModelState.IsValid)
             {
+                int employerPFAmount, employeePFAmount, employeeGratuityAmount;
                 Employee existedEmployee = db.Employees.Find(employee.Id);
 
                 existedEmployee.DrivingLicenseNumber = employee.DrivingLicenseNumber;
@@ -332,10 +333,31 @@ namespace SearchSystems.Controllers
                 existedEmployee.Country = employee.Country;
                 existedEmployee.PinCode = employee.PinCode;
                 existedEmployee.TotalSalary = employee.TotalSalary;
+                existedEmployee.MonthlyHousingAllowance = employee.MonthlyHousingAllowance;
+                existedEmployee.MonthlyInsuranceAmount = employee.MonthlyInsuranceAmount;
+                existedEmployee.SalaryAppliedDate = employee.SalaryAppliedDate;
+                existedEmployee.EmployeePFPercentage = employee.EmployeePFPercentage;
+
+                if (employee.TotalSalary <= 15000)
+                {
+                    employerPFAmount = (int)(employee.TotalSalary * 12.5 / 100);
+                }
+                else
+                {
+                    employerPFAmount = 1800;
+                }
+                existedEmployee.EmployerPFAmount = employerPFAmount;
+
+                employeePFAmount = (int)(employee.TotalSalary * employee.EmployeePFPercentage / 100);
+                existedEmployee.EmpolyeePFAmount = employeePFAmount;
+
+                employeeGratuityAmount = (int)((employee.TotalSalary / 26 * 15) / 12);
+                existedEmployee.MonthlyGratuityAmount = employeeGratuityAmount;
+
                 existedEmployee.Designation = employee.Designation;
                 existedEmployee.DateOfJoining = employee.DateOfJoining;
-
                 existedEmployee.ProbationPeriod = employee.ProbationPeriod;
+
                 existedEmployee.PFAccountNumber = employee.PFAccountNumber;
                 existedEmployee.PFUANNumber = employee.PFUANNumber;
                 existedEmployee.GratuityNumber = employee.GratuityNumber;
