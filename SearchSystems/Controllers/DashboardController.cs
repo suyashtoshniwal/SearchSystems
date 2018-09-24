@@ -124,7 +124,7 @@ namespace SearchSystems.Controllers
               on employee.DepartmentId equals department.Id
               where employee.IsActive == true
               group employee by employee.DepartmentId into e
-              select new DepartmentDistribution { Name = e.FirstOrDefault(e1 => e1.Department.Name.Length > 0).Department.Name, TotalEmployees = e.Count(), TotalSalary = e.Sum(e1 => e1.Salary) };
+              select new DepartmentDistribution { Name = e.FirstOrDefault(e1 => e1.Department.Name.Length > 0).Department.Name, TotalEmployees = e.Count(), TotalSalary = e.Sum(e1 => e1.TotalSalary) };
 
             var bloodGroups = db.Employees.GroupBy(BloodGroups => BloodGroups.BloodGroup)
                 .Select(g => new { Name = g.Key, Count = g.Count() }).ToDictionary(g => g.Name, g => g.Count);

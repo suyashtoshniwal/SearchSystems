@@ -331,7 +331,7 @@ namespace SearchSystems.Controllers
                 existedEmployee.State = employee.State;
                 existedEmployee.Country = employee.Country;
                 existedEmployee.PinCode = employee.PinCode;
-                existedEmployee.Salary = employee.Salary;
+                existedEmployee.TotalSalary = employee.TotalSalary;
                 existedEmployee.Designation = employee.Designation;
                 existedEmployee.DateOfJoining = employee.DateOfJoining;
 

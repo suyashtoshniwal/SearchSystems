@@ -14,17 +14,6 @@
 <div class="form-horizontal">
     <h4>Employee</h4>
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @*@Html.HiddenFor(model => model.Id)*@
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.Id, "Employee ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
     <div class="form-group">
         @Html.LabelFor(model => model.FirstName, "First Name", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -61,17 +50,17 @@
         @Html.LabelFor(model => model.BloodGroup, "Blood Group", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.BloodGroup, new List<SelectListItem>
-    {
-           new SelectListItem{ Text="Not Known", Value="Unknown", Selected=true},
-        new SelectListItem{ Text="O +ve", Value = "O +ve" },
-        new SelectListItem{ Text="O -ve", Value = "O -ve" },
-        new SelectListItem{ Text="A +ve", Value = "A +ve" },
-        new SelectListItem{ Text="A -ve", Value = "A -ve" },
-        new SelectListItem{ Text="B +ve", Value = "B +ve" },
-        new SelectListItem{ Text="B -ve", Value = "B -ve" },
-        new SelectListItem{ Text="AB +ve", Value = "AB +ve"},
-        new SelectListItem{ Text="AB -ve", Value = "AB -ve"}
-    })
+{
+new SelectListItem{ Text="Not Known", Value="Unknown", Selected=true},
+new SelectListItem{ Text="O +ve", Value = "O +ve" },
+new SelectListItem{ Text="O -ve", Value = "O -ve" },
+new SelectListItem{ Text="A +ve", Value = "A +ve" },
+new SelectListItem{ Text="A -ve", Value = "A -ve" },
+new SelectListItem{ Text="B +ve", Value = "B +ve" },
+new SelectListItem{ Text="B -ve", Value = "B -ve" },
+new SelectListItem{ Text="AB +ve", Value = "AB +ve"},
+new SelectListItem{ Text="AB -ve", Value = "AB -ve"}
+})
 
             @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
         </div>
@@ -174,13 +163,40 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Salary, "Salary", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.TotalSalary, "Total Salary", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.TotalSalary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TotalSalary, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    <div class="form-group">
+        @Html.LabelFor(model => model.SalaryAppliedDate, "Applied Date", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SalaryAppliedDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SalaryAppliedDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.TotalSalary, "Employee PF %", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EmployeePFPercentage, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EmployeePFPercentage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MonthlyInsuranceAmount, "Monthly Insurance Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MonthlyInsuranceAmount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MonthlyInsuranceAmount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MonthlyHousingAllowance, "Monthly Housing Allowance", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MonthlyHousingAllowance, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MonthlyHousingAllowance, "", new { @class = "text-danger" })
+        </div>
+    </div>
     <div class="form-group">
         @Html.LabelFor(model => model.DateOfJoining, "Date of Joining", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">

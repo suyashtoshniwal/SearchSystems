@@ -39,7 +39,6 @@ namespace SearchSystems.Models
         public string Country { get; set; }
         public string PinCode { get; set; }
         public string Designation { get; set; }
-        public int Salary { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
