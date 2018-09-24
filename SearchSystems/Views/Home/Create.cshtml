@@ -202,13 +202,7 @@ new SelectListItem{ Text="AB -ve", Value = "AB -ve"}
             @Html.ValidationMessageFor(model => model.SalaryAppliedDate, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.MobileNumber, "Employee PF Percentage", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EmployeePFPercentage, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Employee PF Percentage" } })
-            @Html.ValidationMessageFor(model => model.EmployeePFPercentage, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    
     <div class="form-group">
         @Html.LabelFor(model => model.IsAccomodationProvided, "Accommodation Provided", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
