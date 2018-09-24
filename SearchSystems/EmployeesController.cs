@@ -62,7 +62,7 @@ namespace SearchSystems
                 case "Salary":
                     if (sortOrder.Equals(CurrentSort))
                         pagedEmployees = searchedEmployees.OrderByDescending
-                                (m => m.Salary).ToPagedList(pageIndex, pageSize);
+                                (m => m.TotalSalary).ToPagedList(pageIndex, pageSize);
                     else
                         pagedEmployees = searchedEmployees.OrderBy
                                 (m => m.Salary).ToPagedList(pageIndex, pageSize);

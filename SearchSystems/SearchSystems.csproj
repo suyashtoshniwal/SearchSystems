@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>false</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -202,7 +202,6 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\FixedDepositsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="EmployeesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -555,7 +554,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52670</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52694/</IISUrl>
+          <IISUrl>http://localhost:52693/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
