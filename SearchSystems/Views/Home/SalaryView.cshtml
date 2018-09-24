@@ -24,39 +24,33 @@
         <tr>
             <th>
                 @Html.ActionLink("Employee Id", "Index",
-                             new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
+                          new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
             </th>
             <th>
                 @Html.ActionLink("First Name", "Index",
-                             new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
+                          new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
             </th>
             <th>
                 @Html.ActionLink("Last Name", "Index",
-                                        new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
+                                     new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, salaryView = true })
             </th>
             <th>
                 Total Salary
             </th>
             <th>
-                Basic Salary
+                Employer PF Amount
             </th>
             <th>
-                PF Amount
+                Employee PF Amount
             </th>
             <th>
-                Gratuity Amount
+                Monthly Gratuity Amount
             </th>
             <th>
-                Insurance Amount
-            </th>
-            <th>
-                Mess Charges
+                Monthly Insurance Amount
             </th>
             <th>
                 Accomodation Charges
-            </th>
-            <th>
-                Other Benefits
             </th>
             <th></th>
         </tr>
@@ -74,28 +68,22 @@
                 @Html.DisplayFor(modelItem => Model[i].LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => Model[i].Salary)
+                @Html.DisplayFor(modelItem => Model[i].TotalSalary)
             </td>
             <td>
-                @Html.TextBoxFor(modelItem => Model[i].BasicSalary, new { style = "width: 70px;" })
+                @Html.DisplayFor(modelItem => Model[i].EmployerPFAmount)
             </td>
             <td>
-                @Html.TextBoxFor(modelItem => Model[i].PFAmount, new { style = "width: 70px;" })
+                @Html.DisplayFor(modelItem => Model[i].EmpolyeePFAmount)
             </td>
             <td>
-                @Html.TextBoxFor(modelItem => Model[i].GratuityAmount, new { style = "width: 70px;" })
+                @Html.DisplayFor(modelItem => Model[i].MonthlyGratuityAmount)
             </td>
             <td>
-                @Html.TextBoxFor(modelItem => Model[i].InsuranceAmount, new { style = "width: 70px;" })
+                @Html.DisplayFor(modelItem => Model[i].MonthlyInsuranceAmount)
             </td>
             <td>
-                @Html.TextBoxFor(modelItem => Model[i].MessCharges, new { style = "width: 70px;" })
-            </td>
-            <td>
-                @Html.TextBoxFor(modelItem => Model[i].AccomodationCharges, new { style = "width: 70px;" })
-            </td>
-            <td>
-                @Html.TextBoxFor(modelItem => Model[i].OtherBenefits, new { style = "width: 70px;" })
+                @Html.DisplayFor(modelItem => Model[i].MonthlyHousingAllowance)
             </td>
             @*<td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -104,10 +92,5 @@
         </td>*@
         </tr>
         }
-        <tr>
-            <td colspan="10">
-                <input type="submit" value="Submit" style="float:right ; class:noprint" />
-            </td>
-        </tr>
     </table>
 }
