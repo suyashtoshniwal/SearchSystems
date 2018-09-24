@@ -34,7 +34,6 @@
           <Property Name="Country" Type="varchar" MaxLength="50" />
           <Property Name="PinCode" Type="varchar" MaxLength="10" />
           <Property Name="Designation" Type="varchar" MaxLength="50" />
-          <Property Name="Salary" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="DateOfJoining" Type="date" />
           <Property Name="ProbationPeriod" Type="int" />
           <Property Name="PFAccountNumber" Type="varchar" MaxLength="50" />
@@ -50,7 +49,6 @@
           <Property Name="AadharNumber" Type="varchar" MaxLength="12" />
           <Property Name="PANNumber" Type="varchar" MaxLength="15" />
           <Property Name="DrivingLicenseNumber" Type="varchar" MaxLength="20" />
-          <Property Name="VehicleNumber" Type="varchar" MaxLength="15" />
           <Property Name="PFStartDate" Type="date" StoreGeneratedPattern="Computed" />
           <Property Name="GratuityStartDate" Type="date" StoreGeneratedPattern="Computed" />
           <Property Name="GratuityStatus" Type="bit" Nullable="false" />
@@ -60,13 +58,14 @@
           <Property Name="InsuranceBankName" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="LastWorkingDay" Type="date" />
-          <Property Name="BasicSalary" Type="int" />
-          <Property Name="PFAmount" Type="int" />
-          <Property Name="GratuityAmount" Type="int" />
-          <Property Name="InsuranceAmount" Type="int" />
-          <Property Name="MessCharges" Type="int" />
-          <Property Name="AccomodationCharges" Type="int" />
-          <Property Name="OtherBenefits" Type="int" />
+          <Property Name="SalaryAppliedDate" Type="date" Nullable="false" />
+          <Property Name="EmployerPFAmount" Type="int" Nullable="false" />
+          <Property Name="EmpolyeePFAmount" Type="int" Nullable="false" />
+          <Property Name="MonthlyGratuityAmount" Type="int" Nullable="false" />
+          <Property Name="MonthlyInsuranceAmount" Type="int" Nullable="false" />
+          <Property Name="MonthlyHousingAllowance" Type="int" Nullable="false" />
+          <Property Name="TotalSalary" Type="int" Nullable="false" />
+          <Property Name="EmployeePFPercentage" Type="float" Nullable="false" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -124,7 +123,6 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PinCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Salary" Type="Int32" />
           <Property Name="DateOfJoining" Type="DateTime" Precision="0" />
           <Property Name="ProbationPeriod" Type="Int32" />
           <Property Name="PFStartDate" Type="DateTime" Precision="0" />
@@ -141,7 +139,6 @@
           <Property Name="AadharNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="PANNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="DrivingLicenseNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="VehicleNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
           <Property Name="PFStatus" Type="Boolean" Nullable="false" />
           <Property Name="GratuityStatus" Type="Boolean" Nullable="false" />
@@ -151,13 +148,14 @@
           <Property Name="InsuranceBankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="LastWorkingDay" Type="DateTime" Precision="0" />
-          <Property Name="BasicSalary" Type="Int32" />
-          <Property Name="PFAmount" Type="Int32" />
-          <Property Name="GratuityAmount" Type="Int32" />
-          <Property Name="InsuranceAmount" Type="Int32" />
-          <Property Name="MessCharges" Type="Int32" />
-          <Property Name="AccomodationCharges" Type="Int32" />
-          <Property Name="OtherBenefits" Type="Int32" />
+          <Property Name="SalaryAppliedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EmployerPFAmount" Type="Int32" Nullable="false" />
+          <Property Name="EmpolyeePFAmount" Type="Int32" Nullable="false" />
+          <Property Name="MonthlyGratuityAmount" Type="Int32" Nullable="false" />
+          <Property Name="MonthlyInsuranceAmount" Type="Int32" Nullable="false" />
+          <Property Name="MonthlyHousingAllowance" Type="Int32" Nullable="false" />
+          <Property Name="TotalSalary" Type="Int32" Nullable="false" />
+          <Property Name="EmployeePFPercentage" Type="Double" Nullable="false" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -212,13 +210,14 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="SEARCHSYSTEMSModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="OtherBenefits" ColumnName="OtherBenefits" />
-                <ScalarProperty Name="AccomodationCharges" ColumnName="AccomodationCharges" />
-                <ScalarProperty Name="MessCharges" ColumnName="MessCharges" />
-                <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
-                <ScalarProperty Name="GratuityAmount" ColumnName="GratuityAmount" />
-                <ScalarProperty Name="PFAmount" ColumnName="PFAmount" />
-                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
+                <ScalarProperty Name="EmployeePFPercentage" ColumnName="EmployeePFPercentage" />
+                <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
+                <ScalarProperty Name="MonthlyHousingAllowance" ColumnName="MonthlyHousingAllowance" />
+                <ScalarProperty Name="MonthlyInsuranceAmount" ColumnName="MonthlyInsuranceAmount" />
+                <ScalarProperty Name="MonthlyGratuityAmount" ColumnName="MonthlyGratuityAmount" />
+                <ScalarProperty Name="EmpolyeePFAmount" ColumnName="EmpolyeePFAmount" />
+                <ScalarProperty Name="EmployerPFAmount" ColumnName="EmployerPFAmount" />
+                <ScalarProperty Name="SalaryAppliedDate" ColumnName="SalaryAppliedDate" />
                 <ScalarProperty Name="LastWorkingDay" ColumnName="LastWorkingDay" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="InsuranceBankName" ColumnName="InsuranceBankName" />
@@ -245,7 +244,6 @@
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="PinCode" ColumnName="PinCode"/>
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
                 <ScalarProperty Name="ProbationPeriod" ColumnName="ProbationPeriod" />
                 <ScalarProperty Name="PFStartDate" ColumnName="PFStartDate" />
@@ -262,7 +260,6 @@
                 <ScalarProperty Name="AadharNumber" ColumnName="AadharNumber" />
                 <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
                 <ScalarProperty Name="DrivingLicenseNumber" ColumnName="DrivingLicenseNumber" />
-                <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -444,13 +444,13 @@ namespace SearchSystems.Controllers
             {
                 Employee existedEmployee = db.Employees.Find(e.Id);
 
-                existedEmployee.BasicSalary = e.BasicSalary;
-                existedEmployee.PFAmount = e.PFAmount;
-                existedEmployee.GratuityAmount = e.GratuityAmount;
-                existedEmployee.InsuranceAmount = e.InsuranceAmount;
-                existedEmployee.MessCharges = e.MessCharges;
-                existedEmployee.AccomodationCharges = e.AccomodationCharges;
-                existedEmployee.OtherBenefits = e.OtherBenefits;
+                //existedEmployee.BasicSalary = e.BasicSalary;
+                //existedEmployee.PFAmount = e.PFAmount;
+                //existedEmployee.GratuityAmount = e.GratuityAmount;
+                //existedEmployee.InsuranceAmount = e.InsuranceAmount;
+                //existedEmployee.MessCharges = e.MessCharges;
+                //existedEmployee.AccomodationCharges = e.AccomodationCharges;
+                //existedEmployee.OtherBenefits = e.OtherBenefits;
                 updatedEmployeeList.Add(e);
             }
             db.SaveChanges();

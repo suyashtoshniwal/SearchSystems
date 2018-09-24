@@ -25,7 +25,7 @@ namespace SearchSystems.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> DOB { get; set; }
         public string BloodGroup { get; set; }
-       
+
         [Required(ErrorMessage = "Mobile Number is required.")]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Invalid Mobile Number.")]
         public string MobileNumber { get; set; }
@@ -84,14 +84,17 @@ namespace SearchSystems.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> LastWorkingDay { get; set; }
 
-        public int BasicSalary { get; set; }
-        public int PFAmount { get; set; }
-        public int GratuityAmount { get; set; }
-        public int InsuranceAmount { get; set; }
-        public int MessCharges { get; set; }
-        public int AccomodationCharges { get; set; }
-        public int OtherBenefits { get; set; }
-
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public System.DateTime SalaryAppliedDate { get; set; }
+        public int EmployerPFAmount { get; set; }
+        public int EmpolyeePFAmount { get; set; }
+        public int MonthlyGratuityAmount { get; set; }
+        public int MonthlyInsuranceAmount { get; set; }
+        public int MonthlyHousingAllowance { get; set; }
+        public int TotalSalary { get; set; }
+        public double EmployeePFPercentage { get; set; }
+    
         public virtual Department Department { get; set; }
     }
 }
