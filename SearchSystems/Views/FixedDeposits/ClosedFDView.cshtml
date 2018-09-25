@@ -1,75 +1,91 @@
 ﻿@model IEnumerable<SearchSystems.Models.FixedDeposit>
 
 @{
-    ViewBag.Title = "ClosedFDView";
+    ViewBag.Title = "Closed FD";
 }
 
-<h2>ClosedFDView</h2>
+<h2>Closed FD List</h2>
+<p>Following is list of all FD's which are not active</p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AccountName)
+            @Html.DisplayName("Sr No.")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FDNumber)
+            @Html.DisplayName("Account Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfPurchase)
+            @Html.DisplayName("Bank Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            @Html.DisplayName("FD Number")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RateOfInterest)
+            @Html.DisplayName("Date of Purchase")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaturityDate)
+            @Html.DisplayName("Amount")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MaturityAmount)
+            @Html.DisplayName("Interest Rate")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            @Html.DisplayName("Maturity Date")
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayName("Maturity Amount")
+        </th>
+        <th>
+            @Html.DisplayName("Current Status")
+        </th>
+        <th>
+            @Html.DisplayName("Remarks")
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FDNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfPurchase)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RateOfInterest)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaturityDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaturityAmount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @{ 
+        var counter = 0;
+    }
+    @foreach (var item in Model)
+    {
+
+        counter++;
+        <tr>
+            <td>
+                @counter
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FDNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfPurchase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RateOfInterest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaturityDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaturityAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+        </tr>
+    }
 
 </table>

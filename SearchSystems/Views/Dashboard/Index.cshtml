@@ -143,6 +143,11 @@
                 @Html.Label("Fixed Deposits : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFDMaturing.ToString(), "Index", "FixedDeposits", new { fdview = true }, null)
             </h3>
         </div>
+        <div class="col-md-4">
+            <h3>
+                @Html.Label("Closed FD's : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalClosedFD.ToString(), "Index", "FixedDeposits", new { ClosedFDView = true }, null)
+            </h3>
+        </div>
     </div>
     <hr />
 

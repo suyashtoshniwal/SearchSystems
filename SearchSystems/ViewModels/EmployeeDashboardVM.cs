@@ -17,6 +17,7 @@ namespace SearchSystems.ViewModels
         public int TotalEmpGratuityPending { get; set; }
 
         public int TotalFDMaturing { get; set; }
+        public int TotalClosedFD { get; set; }
 
         public int PastEmployees { get; set; }
 
