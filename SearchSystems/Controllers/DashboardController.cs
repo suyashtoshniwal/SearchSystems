@@ -58,6 +58,7 @@ namespace SearchSystems.Controllers
 
             employeeDashboardViewModel.TotalFDMaturing = fdDb.FixedDeposits.Where(e => e.MaturityDate <= testLessThanDate && e.Status == true).Count();
 
+            employeeDashboardViewModel.TotalClosedFD = fdDb.FixedDeposits.Where(e => e.Status == false).Count();
             // Get employees for whom PF needs to be started
             //var probationOverEmployees = db.Employees.Where(e => System.Data.Objects.EntityFunctions.AddMonths(e.DateOfJoining.Value.
             //                                AddMonths(Convert.ToInt32(e.ProbationPeriod.Value)).Equals(DateTime.Today));

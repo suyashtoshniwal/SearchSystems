@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SearchSystems.Models.FixedDeposit>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Fixed Deposits Records";
 }
 
 <h2>Index</h2>
@@ -12,7 +12,13 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayName("Sr No.")
+        </th>
+        <th>
             @Html.DisplayName("Account Name")
+        </th>
+        <th>
+            @Html.DisplayName("Bank Name")
         </th>
         <th>
             @Html.DisplayName("FD Number")
@@ -41,7 +47,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.AccountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FDNumber)
@@ -66,8 +78,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { serialnumber = item.SerialNumber, bankname = item.BankName }) |
-            @Html.ActionLink("Details", "Details", new { serialnumber = item.SerialNumber, bankname = item.BankName }) |
-            @Html.ActionLink("Delete", "Delete", new { serialnumber = item.SerialNumber, bankname = item.BankName })
+            @Html.ActionLink("Details", "Details", new { serialnumber = item.SerialNumber, bankname = item.BankName })
         </td>
     </tr>
 }
