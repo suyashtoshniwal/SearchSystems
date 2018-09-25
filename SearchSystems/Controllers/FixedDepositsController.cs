@@ -15,13 +15,18 @@ namespace SearchSystems.Controllers
         private Entities db = new Entities();
 
         // GET: FixedDeposits
-        public ActionResult Index(bool fdView = false)
+        public ActionResult Index(bool fdView = false, bool closedFDView = false)
         {
             if (fdView)
             {
                 DateTime testLessThanDate = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
                 IQueryable<FixedDeposit> fdAccounts = db.FixedDeposits.Where(e => e.MaturityDate <= testLessThanDate && e.Status == true);
                 return View("FDView", fdAccounts.ToList());
+            }
+            if(closedFDView)
+            {
+                IQueryable<FixedDeposit> fdAccounts = db.FixedDeposits.Where(e => e.Status == false);
+                return View("ClosedFDView", fdAccounts.ToList());
             }
             
             return View(db.FixedDeposits.ToList());
