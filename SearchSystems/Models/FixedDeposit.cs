@@ -33,5 +33,6 @@ namespace SearchSystems.Models
         public Nullable<System.DateTime> MaturityDate { get; set; }
         public string MaturityAmount { get; set; }
         public Nullable<bool> Status { get; set; }
+        public string Remarks { get; set; }
     }
 }

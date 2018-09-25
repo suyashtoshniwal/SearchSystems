@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SEARCHSYSTEMSModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SEARCHSYSTEMSModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="FixedDeposit">
           <Key>
             <PropertyRef Name="SerialNumber" />
@@ -20,12 +20,13 @@
           <Property Name="MaturityDate" Type="date" />
           <Property Name="MaturityAmount" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="bit" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="SEARCHSYSTEMSModel2StoreContainer">
           <EntitySet Name="FixedDeposit" EntityType="Self.FixedDeposit" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
-    </edmx:StorageModels>
+	  </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SEARCHSYSTEMSModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -44,6 +45,7 @@
           <Property Name="MaturityDate" Type="DateTime" Precision="0" />
           <Property Name="MaturityAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="true"/>
           <Property Name="Status" Type="Boolean" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="FixedDeposits" EntityType="Self.FixedDeposit" />
@@ -57,6 +59,7 @@
           <EntitySetMapping Name="FixedDeposits">
             <EntityTypeMapping TypeName="SEARCHSYSTEMSModel2.FixedDeposit">
               <MappingFragment StoreEntitySet="FixedDeposit">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="AccountName" ColumnName="AccountName" />
                 <ScalarProperty Name="BankName" ColumnName="BankName" />

@@ -506,6 +506,7 @@
     <Content Include="Views\Home\SalaryView.cshtml" />
     <Content Include="Views\Salary\Create.cshtml" />
     <Content Include="Views\Salary\Index.cshtml" />
+    <Content Include="Views\FixedDeposits\ClosedFDView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,5 +27,7 @@ namespace SearchSystems.Models
     
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+
+        public System.Data.Entity.DbSet<SearchSystems.Models.FixedDeposit> FixedDeposits { get; set; }
     }
 }
