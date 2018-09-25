@@ -15,6 +15,7 @@ namespace SearchSystems.Controllers
         private Entities db = new Entities();
 
         // GET: FixedDeposits
+        [Authorize(Users = "FDAdmin")]
         public ActionResult Index(bool fdView = false, bool closedFDView = false)
         {
             if (fdView)

@@ -12,7 +12,10 @@
     @RenderSection("scripts", required: false)
 </head>
 <body>
+    
     <div class="navbar navbar-inverse navbar-fixed-top">
+        @if (User.Identity.IsAuthenticated)
+        {
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,30 +23,60 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
+
                 @Html.ActionLink("SEARCH Employee", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
+
             </div>
+            
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
                     <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-                    <li>@Html.ActionLink("FD Records", "Index", "FixedDeposits")</li>
+
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.Identity.Name.Equals("FDAdmin", StringComparison.OrdinalIgnoreCase))
+                        {
+                        <li>@Html.ActionLink("FD Records", "Index", "FixedDeposits")</li>
+                        }
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
                     <li>@Html.ActionLink("Salary", "Index", "Home", new { salaryView = true }, null)</li>
-                    @*<li>@Html.ActionLink("Logoff", "LogOff", "Account")</li>*@
+
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                    <li>@Html.ActionLink("Logoff", "LogOff", "Account")</li>
+
+                    }
+
                 </ul>
             </div>
         </div>
+        }
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/moment.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
-    <script src="~/Scripts/Site.js"></script>
-</body>
+        <script src="~/Scripts/jquery-3.3.1.js"></script>
+        <script src="~/Scripts/moment.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+        <script src="~/Scripts/Site.js"></script>
+    </body>
 </html>

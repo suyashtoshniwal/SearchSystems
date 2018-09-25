@@ -15,7 +15,6 @@ namespace SearchSystems.Controllers
         private SEARCHSYSTEMSEntities4 db = new SEARCHSYSTEMSEntities4();
         private Entities fdDb = new Entities();
 
-        [Authorize(Roles = "admin")]
         public JsonResult GetEmployeeJoiningData()
         {
             var groups = db.Employees.GroupBy(e => e.DateOfJoining.Value.Year)
@@ -38,6 +37,7 @@ namespace SearchSystems.Controllers
             return new JsonResult { Data = chartData, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         // GET: Dashboard
+        [Authorize]
         public ActionResult Index()
         {
             var employeeDashboardViewModel = new EmployeeDashboardVM();

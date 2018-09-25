@@ -17,7 +17,7 @@ namespace SearchSystems.Controllers
     {
         private SEARCHSYSTEMSEntities4 db = new SEARCHSYSTEMSEntities4();
 
-        [Authorize(Roles = "admin")]
+        [Authorize]
         public ActionResult Index(string search, string previousSortOrder,
                                   string previousSortTerm, string CurrentSortTerm,
                                   int? page, bool PFView = false, bool gratuityView = false,
