@@ -3,6 +3,7 @@ using SearchSystems.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -133,7 +134,9 @@ namespace SearchSystems.Controllers
             employeeDashboardViewModel.BloodGroups = bloodGroups;
 
             var dateMonthfromToday = DateTime.Now.Add(new TimeSpan(30, 0, 0, 0));
-            var employeeBirthdays = db.Employees.Where(employee => employee.IsActive == true && employee.DOB.Value.Month >= DateTime.Today.Month && employee.DOB.Value.Day >= DateTime.Today.Day && employee.DOB.Value.Month <= dateMonthfromToday.Month)
+           
+            var employeeBirthdays = db.Employees.Where(employee => employee.IsActive == true &&  (dateMonthfromToday.DayOfYear - SqlFunctions.DatePart("dayofyear", employee.DOB)) >= 0 &&
+            (dateMonthfromToday.DayOfYear - SqlFunctions.DatePart("dayofyear", employee.DOB)) <= 30)
                 .ToDictionary(ed => String.Concat(ed.FirstName," ", ed.LastName), ed => ed.DOB);
             employeeDashboardViewModel.EmployeeBirthdays = employeeBirthdays;
 
