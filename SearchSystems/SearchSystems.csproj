@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>false</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -271,8 +272,12 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ViewModels\EmployeeDashboardVHWViewModel.cs" />
     <Compile Include="ViewModels\EmployeeDashboardVM.cs" />
+    <Compile Include="ViewModels\GratuityViewModel.cs" />
+    <Compile Include="ViewModels\PFViewModel.cs" />
     <Compile Include="ViewModels\SalesCategoryModel.cs" />
+    <Compile Include="ViewModels\WarningsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -404,6 +409,7 @@
     <Content Include="Models\FixedDeposit.edmx.diagram">
       <DependentUpon>FixedDeposit.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\AdminMachineProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
@@ -507,6 +513,8 @@
     <Content Include="Views\Salary\Create.cshtml" />
     <Content Include="Views\Salary\Index.cshtml" />
     <Content Include="Views\FixedDeposits\ClosedFDView.cshtml" />
+    <Content Include="Views\Shared\Editor Templates\AadharFormat.cshtml" />
+    <Content Include="Views\Dashboard\VHWIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

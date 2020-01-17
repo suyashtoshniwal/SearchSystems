@@ -8,74 +8,6 @@
 
 @using (Html.BeginForm())
 {
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
-
-    <script>
-        $(document).ready(function () {
-            //Load Data Here
-            var chartData = null;
-            $.ajax({
-                url: '/Dashboard/GetEmployeeJoiningData',
-                type: 'GET',
-                dataType: 'json',
-                data: '',
-                success: function (d) {
-                    chartData = d;
-                },
-                error: function () {
-                    alert('Error!');
-                }
-            }).done(function () {
-                drawColumnChart(chartData);
-            });
-        });
-        function drawColumnChart(d) {
-            var chartData = d;
-            var data = null;
-            data = google.visualization.arrayToDataTable(chartData);
-            var view = new google.visualization.DataView(data);
-            view.setColumns([0, {
-                type: 'number',
-                label: data.getColumnLabel(0),
-                calc: function () { return 0; }
-            }
-            ]);
-            var chart = new google.visualization.ColumnChart($('#employeeColumnChart')[0]); //returns a HTML DOM Object
-            var options = {
-                title: 'Employee Joining Report',
-                legend: 'none',
-                colors: ['blue', '#009900'],
-
-                hAxis: {
-                    title: 'Year',
-                    format: '#',
-                    viewWindow: {
-                        min: 1980,
-                        max: 2500
-                    }
-                },
-                vAxis: {
-                    minValue: 0,
-                    maxValue: 100,
-                    title: 'EmployeesJoined'
-                },
-                chartArea: {
-                    left: 100, top: 50, width: '70%', height: '50%'
-                },
-                animation: {
-                    duration: 1000
-                },
-            };
-            var runFirstTime = google.visualization.events.addListener(chart, 'ready', function () {
-                google.visualization.events.removeListener(runFirstTime);
-                chart.draw(data, options);
-            });
-            chart.draw(data, options);
-        }
-        google.load('visualization', '1', { packages: ['corechart'] });
-    </script>
-
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-1"></div>
@@ -91,53 +23,357 @@
         <div class="col-md-1"></div>
     </div>
 
-    <h3>@Html.Label("SEARCH Employee Overview")</h3>
-    <hr />
     <div class="row">
-        <div class="col-md-4">
-            <h3 style="color:lightseagreen">
-                @Html.Label("Current Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmployeesNumber.ToString(), "Index", "home")
-            </h3>
-        </div>
-        <div class="col-md-4">
-            <h3 style="color:lightseagreen">
-                @Html.Label("Male : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalMaleEmployeesNumber.ToString(), "Index", "home")
-            </h3>
-        </div>
-        <div class="col-md-4">
-            <h3 style="color:lightseagreen">
-                @Html.Label("Female : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFemaleEmployeesNumber.ToString(), "Index", "home")
-            </h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h3 style="color:lightseagreen">
-                @Html.Label("Past Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.PastEmployees.ToString(), "Index", "home", new { deletedEmployeesView = true }, null)
-            </h3>
-        </div>
-    </div>
-    <hr/>
-    <h3>@Html.Label("Pending Dues : Need to take Action")</h3>
+        <h3>@Html.Label("SEARCH Employee Overview")</h3>@Html.Label("Last Updated On: ") <text>&nbsp;@Model.LastUpdatedDate.Date.ToString("dd'/'MM'/'yyyy")</text>
+        <hr />
 
+        <h3>@Html.Label("Pending Dues : Need to take Action")</h3>
+
+        <div class="row">
+            <div class="col-md-4">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Provident Fund (PF) : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpNumberPFTostartFor.ToString(), "Index", "home", new { pfview = true }, null)
+                </h4>
+            </div>
+            <div class="col-md-4">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Gratuity : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpGratuityPending.ToString(), "Index", "home", new { gratuityview = true }, null)
+                </h4>
+            </div>
+            <div class="col-md-4">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Medical Insurance : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmployeeInsurancePending.ToString(), "Index", "home", new { insuranceview = true }, null)
+                    @*@Html.ActionLink("Medical Insurance", "Index", "home", new { insuranceview = true }, new { style = "color:black;font-weight:bold" })*@
+                </h4>
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-12">
+           
+            <br />
+            <div class="col-md-6">
+                <h4 style="color:lightseagreen">
+                    @*@Html.Label("Current Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFullTimeEmployeesNumberActive.ToString(), "Index", "home")*@
+                    @Html.Label("Active Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFullTimeEmployeesNumberActive.ToString(), "Index", "home", new { fullTimeactive = true }, null)
+                </h4>
+            </div>
+            <div class="col-md-6">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Total Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFullTimeEmployeesNumberTotal.ToString(), "Index", "home", new { fullTimeTotal = true }, null)
+                    @* @Html.ActionLink("Total Employees: " + Model.TotalFullTimeEmployeesNumberTotal, "Index", "home", new { fullTimeTotal = true }, null)*@
+                </h4>
+            </div>
+            <div class="col-md-6">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Male Active : ")<text>&nbsp;</text>@Html.DisplayFor(modelItem => Model.TotalFullTimeMaleEmployeesNumberActive)
+                </h4>
+                @* @Html.ActionLink("Male Active: " + Model.TotalFullTimeMaleEmployeesNumberActive, "Index", "home", new { fullTimemaleactive = true }, null)*@
+            </div>
+            <div class="col-md-6">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Male Total : ")<text>&nbsp;</text>@Html.DisplayFor(modelItem => Model.TotalFullTimeMaleEmployeesNumberTotal)
+                </h4>
+                @* @Html.ActionLink("Male Total: " + Model.TotalFullTimeMaleEmployeesNumberTotal, "Index", "home", new { fullTimemaletotal = true }, null)*@
+            </div>
+            <div class="col-md-6">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Female Active : ")<text>&nbsp;</text>@Html.DisplayFor(modelItem => Model.TotalFullTimeFemaleEmployeesNumberActive)
+                </h4>
+                @*@Html.ActionLink("FeMale Active: " + Model.TotalFullTimeFemaleEmployeesNumberActive, "Index", "home", new { fullTimefemaleactive = true }, null)*@
+            </div>
+            <div class="col-md-6">
+                <h4 style="color:lightseagreen">
+                    @Html.Label("Female Total : ")<text>&nbsp;</text>@Html.DisplayFor(modelItem => Model.TotalFullTimeFeMaleEmployeesNumberTotal)
+                </h4>
+                @* @Html.ActionLink("FeMale Total: " + Model.TotalFullTimeFeMaleEmployeesNumberTotal, "Index", "home", new { fullTimefemaletotal = true }, null)*@
+            </div>
+
+            <hr />
+
+          
+          
+            <div id="collapse1">
+                <div id="collapse2" class="col-md-6">
+                    <h4 style="color:lightseagreen">@Html.Label("Employee Service Distribution")</h4>
+                    <table border="1" class="text-center" cellpadding="5">
+                        <tr style="color:lightseagreen">
+                            <th>Service Duration Between</th>
+                            <th>No Of Employees</th>
+                            <th>Percentage(%)</th>
+                        </tr>
+                        <tr>
+                            <td>0 to 1 year</td>
+                            <td>@Model.EmployeeServiceDistribution[1]</td>
+                            @{decimal percentage;}
+                            @{percentage = (Model.EmployeeServiceDistribution[1] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage</td>
+                        </tr>
+                        <tr>
+                            <td>1 to 2 years</td>
+                            <td>@Model.EmployeeServiceDistribution[2]</td>
+                            @{decimal percentage1;}
+                            @{percentage1 = (Model.EmployeeServiceDistribution[2] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage1</td>
+                        </tr>
+                        <tr>
+                            <td>2 to 3 years</td>
+                            <td>@Model.EmployeeServiceDistribution[3]</td>
+                            @{decimal percentage2;}
+                            @{percentage2 = (Model.EmployeeServiceDistribution[3] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage2</td>
+                        </tr>
+                        <tr>
+                            <td>3 to 5 years</td>
+                            <td>@Model.EmployeeServiceDistribution[5]</td>
+                            @{decimal percentage3;}
+                            @{percentage3 = (Model.EmployeeServiceDistribution[5] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage2</td>
+                        </tr>
+                        <tr>
+                            <td>5 to 7 years</td>
+                            <td>@Model.EmployeeServiceDistribution[7]</td>
+                            @{decimal percentage4;}
+                            @{percentage4 = (Model.EmployeeServiceDistribution[7] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage4</td>
+                        </tr>
+                        <tr>
+                            <td>7 to 9 years</td>
+                            <td>@Model.EmployeeServiceDistribution[9]</td>
+                            @{decimal percentage5;}
+                            @{percentage5 = (Model.EmployeeServiceDistribution[9] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage5</td>
+                        </tr>
+                        <tr>
+                            <td>9 to 11 years</td>
+                            <td>@Model.EmployeeServiceDistribution[11]</td>
+                            @{decimal percentage6;}
+                            @{percentage6 = (Model.EmployeeServiceDistribution[11] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage6</td>
+                        </tr>
+                        <tr>
+                            <td>11 to 13 years</td>
+                            <td>@Model.EmployeeServiceDistribution[13]</td>
+                            @{decimal percentage7;}
+                            @{percentage7 = (Model.EmployeeServiceDistribution[13] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage7</td>
+                        </tr>
+                        <tr>
+                            <td>13 to 15 years</td>
+                            <td>@Model.EmployeeServiceDistribution[15]</td>
+                            @{decimal percentage8;}
+                            @{percentage8 = (Model.EmployeeServiceDistribution[15] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage8</td>
+                        </tr>
+                        <tr>
+                            <td>Above 15 years</td>
+                            <td>@Model.EmployeeServiceDistribution[16]</td>
+                            @{decimal percentage9;}
+                            @{percentage9 = (Model.EmployeeServiceDistribution[16] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                            <td>@percentage9</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="collapse4" class="col-md-6">
+                    <h4 style="color:lightseagreen">@Html.Label("Employee Service Distribution Total")</h4>
+                    <table border="1" class="text-center" cellpadding="5">
+                        <tr style="color:lightseagreen">
+                            <th>Service Duration Between</th>
+                            <th>No Of Employees</th>
+                            <th>Percentage(%)</th>
+                        </tr>
+                        <tr>
+                            <td>0 to 1 year</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[1]</td>
+                            @{decimal percentage10;}
+                            @{percentage10 = (Model.EmployeeServiceDistribution[1] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage10</td>
+                        </tr>
+                        <tr>
+                            <td>1 to 2 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[2]</td>
+                            @{decimal percentage11;}
+                            @{percentage11 = (Model.EmployeeServiceDistribution[2] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage11</td>
+                        </tr>
+                        <tr>
+                            <td>2 to 3 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[3]</td>
+                            @{decimal percentage12;}
+                            @{percentage12 = (Model.EmployeeServiceDistributionTotal[3] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage12</td>
+                        </tr>
+                        <tr>
+                            <td>3 to 5 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[5]</td>
+                            @{decimal percentage13;}
+                            @{percentage13 = (Model.EmployeeServiceDistribution[5] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage13</td>
+                        </tr>
+                        <tr>
+                            <td>5 to 7 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[7]</td>
+                            @{decimal percentage14;}
+                            @{percentage14 = (Model.EmployeeServiceDistribution[7] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage14</td>
+                        </tr>
+                        <tr>
+                            <td>7 to 9 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[9]</td>
+                            @{decimal percentage15;}
+                            @{percentage15 = (Model.EmployeeServiceDistribution[9] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage15</td>
+                        </tr>
+                        <tr>
+                            <td>9 to 11 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[11]</td>
+                            @{decimal percentage16;}
+                            @{percentage16 = (Model.EmployeeServiceDistributionTotal[11] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage16</td>
+                        </tr>
+                        <tr>
+                            <td>11 to 13 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[13]</td>
+                            @{decimal percentage17;}
+                            @{percentage17 = (Model.EmployeeServiceDistributionTotal[13] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage17</td>
+                        </tr>
+                        <tr>
+                            <td>13 to 15 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[15]</td>
+                            @{decimal percentage18;}
+                            @{percentage18 = (Model.EmployeeServiceDistributionTotal[15] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage18</td>
+                        </tr>
+                        <tr>
+                            <td>Above 15 years</td>
+                            <td>@Model.EmployeeServiceDistributionTotal[16]</td>
+                            @{decimal percentage19;}
+                            @{percentage19 = (Model.EmployeeServiceDistributionTotal[16] * 100) / Model.TotalFullTimeEmployeesNumberTotal;}
+                            <td>@percentage19</td>
+                        </tr>
+                    </table>
+                </div>
+
+             <div style="margin-top:20px">
+
+             </div>
+                <div class="col-md-6">
+                    <h4 style="color:lightseagreen">@Html.Label("Departmentwise Distribution Active")</h4>
+                    <table border="1" class="text-center" cellpadding="5">
+                        <tr style="color:lightseagreen">
+                            <th>Department</th>
+                            <th>Total Employees</th>
+                            @*<th>Total Salary</th>*@
+                        </tr>
+
+                        @foreach (var item in Model.DepartmentDistributions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalEmployees)
+                    </td>
+                    @*<td>
+                @Html.DisplayFor(modelItem => item.TotalSalary)
+            </td>*@
+                </tr>
+
+}
+
+                    </table>
+                </div>
+                <hr />
+                <div class="col-md-6">
+                    <h4 style="color:lightseagreen">@Html.Label("Distribution of Employees Joined Total")</h4>
+                    <table border="1" class="text-center" cellpadding="5">
+                        <tr style="color:lightseagreen">
+                            <th>Between Years</th>
+                            <th>Total Employees</th>
+                        </tr>
+                        <tr>
+                            <td>Before 1990</td>
+                            <td>@Model.EmployeeYearwiseDistribution[5]</td>
+                        </tr>
+                        <tr>
+                            <td>1991 to 1995</td>
+                            <td>@Model.EmployeeYearwiseDistribution[6]</td>
+                        </tr>
+                        <tr>
+                            <td>1996 to 2000</td>
+                            <td>@Model.EmployeeYearwiseDistribution[7]</td>
+                        </tr>
+                        <tr>
+                            <td>2001 to 2005</td>
+                            <td>@Model.EmployeeYearwiseDistribution[1]</td>
+                        </tr>
+                        <tr>
+                            <td>2006 to 2010</td>
+                            <td>@Model.EmployeeYearwiseDistribution[2]</td>
+                        </tr>
+                        <tr>
+                            <td>2011 to 2015</td>
+                            <td>@Model.EmployeeYearwiseDistribution[3]</td>
+                        </tr>
+                        <tr>
+                            <td>2016 to 2020</td>
+                            <td>@Model.EmployeeYearwiseDistribution[4]</td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        @*<div class="col-md-6">
+            <h3 style="color:black; text-align: center">
+                @Html.Label("VHW")
+            </h3>
+            <br />
+            <div class="col-md-6">
+                @Html.ActionLink("Active: " + Model.TotalVHWEmployeesNumberActive, "Index", "home", new { vhwactive = true }, null)
+            </div>
+            <div class="col-md-6">
+                @Html.ActionLink("Total: " + Model.TotalVHWEmployeesNumberTotal, "Index", "home", new { vhwTotal = true }, null)
+            </div>
+        </div>*@
+
+    </div>
+   
+
+
+
+
+    @*<div class="row">
+            <div class="col-md-4">
+                <h3 style="color:lightseagreen">
+                    @Html.Label("Current Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalFullTimeEmployeesNumberActive.ToString(), "Index", "home")
+                </h3>
+            </div>
+            <div class="col-md-4">
+                <h3 style="color:lightseagreen">
+                    @Html.Label("Male : ")<text>&nbsp;</text>@Html.DisplayFor(modelItem => Model.TotalFullTimeMaleEmployeesNumberActive)
+                </h3>
+            </div>
+            <div class="col-md-4">
+                <h3 style="color:lightseagreen">
+                    @Html.Label("Female : ")<text>&nbsp;</text>@Html.DisplayFor(modelItem => Model.TotalFullTimeFemaleEmployeesNumberActive)
+                </h3>
+            </div>
+        </div>*@
     <div class="row">
         <div class="col-md-4">
             <h3 style="color:lightseagreen">
-                @Html.Label("Provident Fund (PF) : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpNumberPFTostartFor.ToString(), "Index", "home", new { pfview = true }, null)
-            </h3>
-        </div>
-        <div class="col-md-4">
-            <h3 style="color:lightseagreen">
-                @Html.Label("Gratuity : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalEmpGratuityPending.ToString(), "Index", "home", new { gratuityview = true }, null)
-            </h3>
-        </div>
-        <div class="col-md-4">
-            <h3 style="color:lightseagreen">
-                @Html.ActionLink("Medical Insurance", "Index", "home", new { insuranceview = true }, new { style = "color:black;font-weight:bold" })
+                @* @Html.Label("Past Employees : ")<text>&nbsp;</text>@Html.ActionLink(Model.PastEmployees.ToString(), "Index", "home", new { deletedEmployeesView = true }, null)*@
+                @* @Html.Label("Last updated on : ")<text>&nbsp;@Model.LastUpdatedDate.Date.ToString("dd'/'MM'/'yyyy"))</text>*@
             </h3>
         </div>
     </div>
-    <div class="row">
+   
+
+    @*<div class="row">
         <div class="col-md-4">
             <h3>
                 @if (User.Identity.IsAuthenticated)
@@ -159,132 +395,164 @@
                     {
                         @Html.Label("Closed FD's : ")<text>&nbsp;</text>@Html.ActionLink(Model.TotalClosedFD.ToString(), "Index", "FixedDeposits", new { ClosedFDView = true }, null)
                     }
-                }            </h3>
-        </div>
-    </div>
-    <hr />
-
-    <div class="row">
-        <div class="col-md-4">
-            <h4 style="color:lightseagreen">@Html.Label("Employee Service Distribution")</h4>
-            <table border="1" class="text-center" cellpadding="5">
-                <tr style="color:lightseagreen">
-                    <th>Service Duration Between</th>
-                    <th>No Of Employees</th>
-                </tr>
-                <tr>
-                    <td>0 to 1 year</td>
-                    <td>@Model.EmployeeServiceDistribution[1]</td>
-                </tr>
-                <tr>
-                    <td>1 to 2 years</td>
-                    <td>@Model.EmployeeServiceDistribution[2]</td>
-                </tr>
-                <tr>
-                    <td>2 to 3 years</td>
-                    <td>@Model.EmployeeServiceDistribution[3]</td>
-                </tr>
-                <tr>
-                    <td>3 to 5 years</td>
-                    <td>@Model.EmployeeServiceDistribution[5]</td>
-                </tr>
-                <tr>
-                    <td>5 to 7 years</td>
-                    <td>@Model.EmployeeServiceDistribution[7]</td>
-                </tr>
-                <tr>
-                    <td>7 to 9 years</td>
-                    <td>@Model.EmployeeServiceDistribution[9]</td>
-                </tr>
-                <tr>
-                    <td>9 to 11 years</td>
-                    <td>@Model.EmployeeServiceDistribution[11]</td>
-                </tr>
-                <tr>
-                    <td>11 to 13 years</td>
-                    <td>@Model.EmployeeServiceDistribution[13]</td>
-                </tr>
-                <tr>
-                    <td>13 to 15 years</td>
-                    <td>@Model.EmployeeServiceDistribution[15]</td>
-                </tr>
-                <tr>
-                    <td>Above 15 years</td>
-                    <td>@Model.EmployeeServiceDistribution[16]</td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-md-4">
-            <h4 style="color:lightseagreen">@Html.Label("Departmentwise Distribution")</h4>
-            <table border="1" class="text-center" cellpadding="5">
-                <tr style="color:lightseagreen">
-                    <th>Department</th>
-                    <th>Total Employees</th>
-                    <th>Total Salary</th>
-                </tr>
-
-                @foreach (var item in Model.DepartmentDistributions)
-                {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalEmployees)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalSalary)
-                </td>
-            </tr>
-
                 }
-
-            </table>
+            </h3>
         </div>
-        <div class="col-md-4">
-            <h4 style="color:lightseagreen">@Html.Label("Distribution of Employees Joined")</h4>
-            <table border="1" class="text-center" cellpadding="5">
-                <tr style="color:lightseagreen">
-                    <th>Between Years</th>
-                    <th>Total Employees</th>
-                </tr>
-                <tr>
-                    <td>Before 1990</td>
-                    <td>@Model.EmployeeYearwiseDistribution[5]</td>
-                </tr>
-                <tr>
-                    <td>1991 to 1995</td>
-                    <td>@Model.EmployeeYearwiseDistribution[6]</td>
-                </tr>
-                <tr>
-                    <td>1996 to 2000</td>
-                    <td>@Model.EmployeeYearwiseDistribution[7]</td>
-                </tr>
-                <tr>
-                    <td>2001 to 2005</td>
-                    <td>@Model.EmployeeYearwiseDistribution[1]</td>
-                </tr>
-                <tr>
-                    <td>2006 to 2010</td>
-                    <td>@Model.EmployeeYearwiseDistribution[2]</td>
-                </tr>
-                <tr>
-                    <td>2011 to 2015</td>
-                    <td>@Model.EmployeeYearwiseDistribution[3]</td>
-                </tr>
-                <tr>
-                    <td>2016 to 2020</td>
-                    <td>@Model.EmployeeYearwiseDistribution[4]</td>
-                </tr>
-            </table>
-        </div>
+    </div>*@
+    
 
-    </div>
+    @*<div class="row">
+            <div class="col-md-4">
+                <h4 style="color:lightseagreen">@Html.Label("Employee Service Distribution")</h4>
+                <table border="1" class="text-center" cellpadding="5">
+                    <tr style="color:lightseagreen">
+                        <th>Service Duration Between</th>
+                        <th>No Of Employees</th>
+                        <th>Percentage(%)</th>
+                    </tr>
+                    <tr>
+                        <td>0 to 1 year</td>
+                        <td>@Model.EmployeeServiceDistribution[1]</td>
+                        @{decimal percentage;}
+                        @{percentage = (Model.EmployeeServiceDistribution[1] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage</td>
+                    </tr>
+                    <tr>
+                        <td>1 to 2 years</td>
+                        <td>@Model.EmployeeServiceDistribution[2]</td>
+                        @{decimal percentage1;}
+                        @{percentage1 = (Model.EmployeeServiceDistribution[2] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage1</td>
+                    </tr>
+                    <tr>
+                        <td>2 to 3 years</td>
+                        <td>@Model.EmployeeServiceDistribution[3]</td>
+                        @{decimal percentage2;}
+                        @{percentage2 = (Model.EmployeeServiceDistribution[3] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage2</td>
+                    </tr>
+                    <tr>
+                        <td>3 to 5 years</td>
+                        <td>@Model.EmployeeServiceDistribution[5]</td>
+                        @{decimal percentage3;}
+                        @{percentage3 = (Model.EmployeeServiceDistribution[5] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage2</td>
+                    </tr>
+                    <tr>
+                        <td>5 to 7 years</td>
+                        <td>@Model.EmployeeServiceDistribution[7]</td>
+                        @{decimal percentage4;}
+                        @{percentage4 = (Model.EmployeeServiceDistribution[7] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage4</td>
+                    </tr>
+                    <tr>
+                        <td>7 to 9 years</td>
+                        <td>@Model.EmployeeServiceDistribution[9]</td>
+                        @{decimal percentage5;}
+                        @{percentage5 = (Model.EmployeeServiceDistribution[9] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage5</td>
+                    </tr>
+                    <tr>
+                        <td>9 to 11 years</td>
+                        <td>@Model.EmployeeServiceDistribution[11]</td>
+                        @{decimal percentage6;}
+                        @{percentage6 = (Model.EmployeeServiceDistribution[11] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage6</td>
+                    </tr>
+                    <tr>
+                        <td>11 to 13 years</td>
+                        <td>@Model.EmployeeServiceDistribution[13]</td>
+                        @{decimal percentage7;}
+                        @{percentage7 = (Model.EmployeeServiceDistribution[13] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage7</td>
+                    </tr>
+                    <tr>
+                        <td>13 to 15 years</td>
+                        <td>@Model.EmployeeServiceDistribution[15]</td>
+                        @{decimal percentage8;}
+                        @{percentage8 = (Model.EmployeeServiceDistribution[15] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage8</td>
+                    </tr>
+                    <tr>
+                        <td>Above 15 years</td>
+                        <td>@Model.EmployeeServiceDistribution[16]</td>
+                        @{decimal percentage9;}
+                        @{percentage9 = (Model.EmployeeServiceDistribution[16] * 100) / Model.TotalFullTimeEmployeesNumberActive;}
+                        <td>@percentage9</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h4 style="color:lightseagreen">@Html.Label("Departmentwise Distribution")</h4>
+                <table border="1" class="text-center" cellpadding="5">
+                    <tr style="color:lightseagreen">
+                        <th>Department</th>
+                        <th>Total Employees</th>
+                        <th>Total Salary</th>
+                    </tr>
+
+                    @foreach (var item in Model.DepartmentDistributions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalEmployees)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalSalary)
+                            </td>
+                        </tr>
+
+                    }
+
+                </table>
+            </div>
+            <div class="col-md-4">
+                <h4 style="color:lightseagreen">@Html.Label("Distribution of Employees Joined")</h4>
+                <table border="1" class="text-center" cellpadding="5">
+                    <tr style="color:lightseagreen">
+                        <th>Between Years</th>
+                        <th>Total Employees</th>
+                    </tr>
+                    <tr>
+                        <td>Before 1990</td>
+                        <td>@Model.EmployeeYearwiseDistribution[5]</td>
+                    </tr>
+                    <tr>
+                        <td>1991 to 1995</td>
+                        <td>@Model.EmployeeYearwiseDistribution[6]</td>
+                    </tr>
+                    <tr>
+                        <td>1996 to 2000</td>
+                        <td>@Model.EmployeeYearwiseDistribution[7]</td>
+                    </tr>
+                    <tr>
+                        <td>2001 to 2005</td>
+                        <td>@Model.EmployeeYearwiseDistribution[1]</td>
+                    </tr>
+                    <tr>
+                        <td>2006 to 2010</td>
+                        <td>@Model.EmployeeYearwiseDistribution[2]</td>
+                    </tr>
+                    <tr>
+                        <td>2011 to 2015</td>
+                        <td>@Model.EmployeeYearwiseDistribution[3]</td>
+                    </tr>
+                    <tr>
+                        <td>2016 to 2020</td>
+                        <td>@Model.EmployeeYearwiseDistribution[4]</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>*@
     <hr />
 
     <div class="row">
         <div class="col-md-4">
-            <h4 style="color:lightseagreen">@Html.Label("Blood Groupwise Distribution")</h4>
+            <h4 style="color:lightseagreen">@Html.Label("Blood Groupwise Distribution Active")</h4>
             <table border="1" class="text-center" cellpadding="5">
                 <tr style="color:lightseagreen">
                     <th>Blood Group</th>
@@ -292,51 +560,171 @@
                 </tr>
                 @foreach (var item in Model.BloodGroups)
                 {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Key)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Value)
-                </td>
-            </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Key)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Value)
+                        </td>
+                    </tr>
 
                 }
 
             </table>
         </div>
-        
-            <div class="col-md-4">
-                <h4 style="color:lightseagreen">@Html.Label("Upcoming Birthdays")</h4>
-                <table border="1" class="text-center" cellpadding="5">
-                    @if (Model.EmployeeBirthdays.Count() > 0)
-                    {
-            <tr style="color:lightseagreen">
-                <th>Name</th>
-                <th>Birthday</th>
-            </tr>
+        <div class="col-md-4">
+            <h4 style="color:lightseagreen">@Html.Label("SalaryWise Distribution Active")</h4>
+            <table border="1" class="text-center" cellpadding="5">
+                <tr style="color:lightseagreen">
+                    <th>     Salary Range     </th>
+                    <th>Total Male Employees</th>
+                    <th>Total Female Employees</th>
+                </tr>
 
-                        foreach (var item in Model.EmployeeBirthdays)
-                        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Key)
-                </td>
-                <td>
-                    @Html.TextBox("birthday", item.Value.Value.ToShortDateString(), new { @readonly = "readonly", @style = "border: 0px" })
-                </td>
-            </tr>
+                @foreach (var item in Model.SalaryRangeMaleFemaleDistributions)
+                {
+                    <tr>
+                        <td nowrap="">
+                            @Html.DisplayFor(modelItem => item.SalaryRange)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalMaleEmployees)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalFemaleEmployees)
+                        </td>
+                    </tr>
 
-                        }
-                    }
-                    else
-                    { @Html.Label("No Birthdays in the coming month!")
+                }
 
-                    }
-
-                </table>
-            </div>
+            </table>
         </div>
+        <div class="col-md-4">
+            <h4 style="color:lightseagreen">@Html.Label("Upcoming Birthdays Active")</h4>
+            <table border="1" class="text-center" cellpadding="5">
+                @if (Model.EmployeeBirthdays.Count() > 0)
+                {
+                    <tr style="color:lightseagreen">
+                        <th>Name</th>
+                        <th>Birthday</th>
+                    </tr>
+
+                    foreach (var item in Model.EmployeeBirthdays)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Key)
+                            </td>
+                            <td>
+                                @Html.TextBox("birthday", item.Value.Value.ToShortDateString(), new { @readonly = "readonly", @style = "border: 0px" })
+                            </td>
+                        </tr>
+
+                    }
+                }
+                else
+                { @Html.Label("No Birthdays in the coming month!")
+
+            }
+
+            </table>
+        </div>
+    </div>
+
+
+    @*<div class="row">
+        <div class="col-md-4">
+            <h4 style="color:lightseagreen">@Html.Label("Agewise Distribution")</h4>
+            <table border="1" class="text-center" cellpadding="5">
+                <tr style="color:lightseagreen">
+                    <th>Age</th>
+                    <th>Total Employees</th>
+                </tr>
+                @foreach (var item in Model.AgeDistributions)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AgeRange)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalEmployees)
+                        </td>
+                    </tr>
+
+                }
+
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h4 style="color:lightseagreen">@Html.Label("EducationWise Distribution")</h4>
+            <table border="1" class="text-center" cellpadding="5">
+                <tr style="color:lightseagreen">
+                    <th>     Education     </th>
+                    <th>Total Employees</th>
+
+                </tr>
+
+                @foreach (var item in Model.EducationDistributions)
+                {
+                    <tr>
+                        <td nowrap="">
+                            @Html.DisplayFor(modelItem => item.EducationRange)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalEmployees)
+                        </td>
+
+                    </tr>
+
+                }
+
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h4 style="color:lightseagreen">@Html.Label("Employees Left Distributions")</h4>
+            <table border="1" class="text-center" cellpadding="5">
+                @if (Model.LastWorkODayDistributions.Count() > 0)
+                {
+                    <tr style="color:lightseagreen">
+                        <th>Year</th>
+                        <th>Count</th>
+                    </tr>
+
+                    foreach (var item in Model.LastWorkODayDistributions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastWorkOdDayRange)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalEmployees)
+                            </td>
+                        </tr>
+
+                    }
+                }
+
+
+            </table>
+        </div>
+    </div>*@
 }
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#navtoggle').click(function () {
+                //get collapse content selector
+
+                $('#test').slideToggle(1000, 'swing');
+                //make the collapse content to be shown or hide
+              
+               
+            });
+
+        });	
+    </script>
+}
+
 
 

@@ -38,10 +38,7 @@
                 Department
             </th>
             <th>
-                Last Insurance Renewal Date
-            </th>
-            <th>
-                Insurance Expiry Date
+                Insurance Renewal Date
             </th>
             <th></th>
         </tr>
@@ -64,9 +61,9 @@
             <td>
                 @Html.EditorFor(modelItem => Model[i].InsuranceRenewalDate, new { htmlAttributes = new { @class = "form-control" } })
             </td>
-            <td>
+            @*<td>
                 @Html.EditorFor(modelItem => Model[i].InsuranceExpiryDate, new { htmlAttributes = new { @class = "form-control" }})
-            </td>
+            </td>*@
             @*<td>
             @Html.CheckBoxFor(modelItem => Model[i].GratuityStatus, new { @class = "" })
         </td>*@

@@ -1,6 +1,10 @@
-﻿@model IList<SearchSystems.Models.Employee>
+﻿
 
 @using PagedList.Mvc;
+@using SearchSystems.ViewModels;
+
+@model IList<PFViewModel>
+
 @{
     ViewBag.Title = "Employee List";
     string currentSearch = ViewBag.Search;
@@ -25,15 +29,15 @@
         <tr>
             <th>
                 @Html.ActionLink("Employee Id", "Index",
-                                    new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+                                         new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
             </th>
             <th>
                 @Html.ActionLink("First Name", "Index",
-                                    new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+                                         new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
             </th>
             <th>
                 @Html.ActionLink("Last Name", "Index",
-                                               new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
+                                                    new { CurrentSortTerm = "LastName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch, PFView = true })
             </th>
             <th>
                 Department
@@ -55,37 +59,50 @@
 
         @for (var i = 0; i < Model.Count; i++)
         {
-            <tr>
-                <td>
-                    @Html.TextBoxFor(modelItem => Model[i].Id, new { @style = "border: 0px" })
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model[i].FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model[i].LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model[i].Department.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model[i].DateOfJoining)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model[i].ProbationPeriod)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model[i].PFStartDate)
-                </td>
-                <td>
-                    @Html.CheckBoxFor(modelItem => Model[i].PFStatus, new { @class = "" })
-                </td>
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        <tr>
+            <td>
+                @Html.TextBoxFor(modelItem => Model[i].Id, new { @style = "border: 0px" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].DateOfJoining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].ProbationPeriod)
+            </td>
+            @if (Model[0].IsAdminLogin)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => Model[i].PFStartDate)
+        </td>
+        <td>
+            @Html.CheckBoxFor(modelItem => Model[i].PFStatus, new { @class = "", @disabled = "disabled", @style = "background-color:grey;", })
+        </td>
+}
+            else if (Model[0].IsAccountsLogin)
+    {
+        <td>
+            @Html.EditorFor(model => model[i].PFStartDate, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.TextBoxFor(modelItem => Model[i].PFStartDate)*@
+        </td>
+        <td>
+            @Html.CheckBoxFor(modelItem => Model[i].PFStatus, new { @class = "" })
+        </td>
+}
+        @*<td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
 
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>*@
-            </tr>
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>*@
+        </tr>
         }
         <tr>
             <td colspan="5">

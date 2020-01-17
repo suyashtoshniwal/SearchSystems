@@ -17,6 +17,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="20" />
           <Property Name="FirstName" Type="varchar" MaxLength="20" />
           <Property Name="LastName" Type="varchar" MaxLength="20" />
           <Property Name="DepartmentId" Type="numeric" Precision="18" Scale="0" Nullable="false" />
@@ -27,7 +28,7 @@
           <Property Name="WhatsAppNumber" Type="varchar" MaxLength="10" />
           <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
           <Property Name="OfficeEmailAddress" Type="varchar" MaxLength="50" />
-          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="District" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="50" />
@@ -54,7 +55,7 @@
           <Property Name="GratuityStatus" Type="bit" Nullable="false" />
           <Property Name="PFStatus" Type="bit" Nullable="false" />
           <Property Name="YearsOfExperince" Type="int" StoreGeneratedPattern="Computed" />
-          <Property Name="IsAccomodationProvided" Type="varchar" MaxLength="10" />
+          <Property Name="IsAccomodationProvided" Type="varchar" MaxLength="50" />
           <Property Name="InsuranceBankName" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="LastWorkingDay" Type="date" />
@@ -66,6 +67,12 @@
           <Property Name="MonthlyHousingAllowance" Type="int" Nullable="false" />
           <Property Name="TotalSalary" Type="int" Nullable="false" />
           <Property Name="EmployeePFPercentage" Type="float" Nullable="false" />
+          <Property Name="Age" Type="float" />
+          <Property Name="UpdatedOn" Type="date" />
+          <Property Name="Education" Type="varchar" MaxLength="200" />
+          <Property Name="LastDayOfWork" Type="date" />
+          <Property Name="MedicalInsuranceType" Type="varchar" MaxLength="50" />
+          <Property Name="VHW" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -107,6 +114,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DepartmentId" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -116,7 +124,7 @@
           <Property Name="WhatsAppNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OfficeEmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -144,7 +152,7 @@
           <Property Name="GratuityStatus" Type="Boolean" Nullable="false" />
           <Property Name="InsuranceRenewalDate" Type="DateTime" Precision="0" />
           <Property Name="YearsOfExperince" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="IsAccomodationProvided" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsAccomodationProvided" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="InsuranceBankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="LastWorkingDay" Type="DateTime" Precision="0" />
@@ -156,6 +164,12 @@
           <Property Name="MonthlyHousingAllowance" Type="Int32" Nullable="false" />
           <Property Name="TotalSalary" Type="Int32" Nullable="false" />
           <Property Name="EmployeePFPercentage" Type="Double" Nullable="false" />
+          <Property Name="Age" Type="Double" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <Property Name="Education" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LastDayOfWork" Type="DateTime" Precision="0" />
+          <Property Name="MedicalInsuranceType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VHW" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Department_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -210,6 +224,12 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="SEARCHSYSTEMSModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="VHW" ColumnName="VHW" />
+                <ScalarProperty Name="MedicalInsuranceType" ColumnName="MedicalInsuranceType" />
+                <ScalarProperty Name="LastDayOfWork" ColumnName="LastDayOfWork" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="EmployeePFPercentage" ColumnName="EmployeePFPercentage" />
                 <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
                 <ScalarProperty Name="MonthlyHousingAllowance" ColumnName="MonthlyHousingAllowance" />
@@ -228,6 +248,7 @@
                 <ScalarProperty Name="PFStatus" ColumnName="PFStatus" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />

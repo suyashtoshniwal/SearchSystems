@@ -10,20 +10,20 @@
 <h2>Employee List</h2>
 
 <p>
+    @if (Model != null && Model.FirstOrDefault().IsAdminLogin)
+    {
     @Html.ActionLink("Create New", "Create")
+    }
 </p>
 @using (Html.BeginForm())
 {
+    
     @Html.TextBox("Search")
     <input type="submit" name="submit" value="Search" />
     <p></p>
 
     <table class="table">
         <tr>
-            <th>
-                @Html.ActionLink("Employee Id", "Index",
-                                     new { CurrentSortTerm = "Id", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
-            </th>
             <th>
                 @Html.ActionLink("First Name", "Index",
                                      new { CurrentSortTerm = "FirstName", previousSortOrder = ViewBag.PreviousSortOrder, previousSortTerm = ViewBag.PreviousSortTerm, ViewBag.Page, search = currentSearch })
@@ -53,9 +53,6 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
             <td>
@@ -77,7 +74,10 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @if (Model != null && Model.FirstOrDefault().IsAdminLogin)
+                {
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
             </td>
         </tr>
 

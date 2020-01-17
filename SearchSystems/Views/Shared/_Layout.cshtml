@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    @RenderSection("scripts", required: false)
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </head>
 <body>
     
@@ -34,31 +36,37 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated)
-                    {
+    {
 
-                    <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                <li>@Html.ActionLink("Dashboard Full Time", "Index", "Dashboard")</li>
 
-                    }
+}
                     @if (User.Identity.IsAuthenticated)
-                    {
-                        if (User.Identity.Name.Equals("FDAdmin", StringComparison.OrdinalIgnoreCase))
-                        {
-                        <li>@Html.ActionLink("FD Records", "Index", "FixedDeposits")</li>
-                        }
-                    }
+    {
+        if (User.Identity.Name.Equals("FDAdmin", StringComparison.OrdinalIgnoreCase))
+        {
+                <li>@Html.ActionLink("FD Records", "Index", "FixedDeposits")</li>
+}
+}
 
                     @if (User.Identity.IsAuthenticated)
-                    {
+    {
 
-                    <li>@Html.ActionLink("Salary", "Index", "Home", new { salaryView = true }, null)</li>
+                @*<li>@Html.ActionLink("Salary", "Index", "Home", new { salaryView = true }, null)</li>*@
 
-                    }
+}
                     @if (User.Identity.IsAuthenticated)
-                    {
+    {
 
-                    <li>@Html.ActionLink("Logoff", "LogOff", "Account")</li>
+                <li>@Html.ActionLink("Dashboard VHW", "Index", "Dashboard", new { vhwView = true }, null)</li>
 
-                    }
+}
+                    @if (User.Identity.IsAuthenticated)
+    {
+
+                <li>@Html.ActionLink("Logoff", "LogOff", "Account")</li>
+
+}
 
                 </ul>
             </div>
